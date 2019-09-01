@@ -1,6 +1,7 @@
 {
   "name": "bb-calendar-creator",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "A website and module to generate iCal files and HTML tables based on Blind Brook's rotating block schedule and letter day calendar.",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
