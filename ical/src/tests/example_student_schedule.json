@@ -1,0 +1,58 @@
+{
+  "classes": [
+    {
+      "name": "United States History",
+      "letter-days": ["A","C","D","F","G","H"],
+      "room": "PORT 1",
+      "period": 1
+    },
+    {
+      "name": "Physics lab",
+      "letter-days": ["A","C","G"],
+      "room": "H216",
+      "period": 2
+    },
+    {
+      "name": "Robotics",
+      "letter-days": ["D","F","H"],
+      "room": "M101",
+      "period": 2
+    },
+    {
+      "name": "Physics",
+      "letter-days": ["A","B","D","E","F","G"],
+      "room": "H216",
+      "period": 3
+    },
+    {
+      "name": "Pre Calculus",
+      "letter-days": ["A","B","D","E","F","G"],
+      "room": "H102",
+      "period": 4
+    },
+    {
+      "name": "English 11",
+      "letter-days": ["A","B","C","E","F","H"],
+      "room": "PORT 2",
+      "period": 5
+    },
+    {
+      "name": "AP Govt. & Politics",
+      "letter-days": ["A","B","C","E","F","H"],
+      "room": "H205",
+      "period": 6
+    },
+    {
+      "name": "Tactical Sports",
+      "letter-days": ["B","D","H"],
+      "room": "H GYM",
+      "period": 7
+    },
+    {
+      "name": "College Accounting",
+      "letter-days": ["B","C","D","E","G","H"],
+      "room": "H201",
+      "period": 8
+    }
+  ]
+}

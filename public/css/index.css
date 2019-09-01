@@ -1,0 +1,40 @@
+.directions-wrapper {
+    font-size: 20px;
+}
+
+.content-container {
+    display: none;
+}
+#submit-message h1 {
+    text-align: center;
+}
+.content-container[active] {
+    display: block;
+}
+
+.class-input-group {
+    margin: 25px 0;
+    padding: 10px;
+    border: solid #dddddd 1px;
+    border-radius: 0.25rem;
+}
+
+.num-class {
+    text-align: center;
+}
+#printable_schedule {
+    width: 100%;
+    overflow: auto;
+}
+@media only screen and (max-width: 800px) {
+    .content-container {
+        width: 90%
+    }
+}
+
+a {
+    color: #00B7FF;
+}
+
+
+

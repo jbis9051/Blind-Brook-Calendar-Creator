@@ -1,0 +1,27 @@
+/*
+https://stackoverflow.com/a/2618980/7886229
+ */
+.only-print {
+    display: none;
+}
+@media print {
+    body {
+        margin: 0;
+        padding: 0;
+        background: white;
+    }
+    body * {
+        visibility: hidden;
+    }
+    .printable, .printable * {
+        visibility: visible;
+    }
+    .printable {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    .only-print {
+        display: block;
+    }
+}

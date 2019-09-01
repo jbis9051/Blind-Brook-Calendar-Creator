@@ -1,0 +1,28 @@
+table {
+    table-layout: auto;
+    width: 100%;
+    border-collapse: collapse;
+    border: 3px solid black;
+    font-size: 30px;
+}
+.time {
+    font-size: 1.3rem;
+}
+.lunch {
+    background: #c5dbf0;
+}
+.class {
+    font-size: 15px;
+}
+table, th, td {
+    text-align: center;
+    text-overflow: ellipsis;
+    border: 1px solid black;
+}
+th {
+   width: 200px;
+}
+th:first-child {
+    width: 25rem;
+}
+
