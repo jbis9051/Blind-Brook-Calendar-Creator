@@ -16,6 +16,7 @@ A website and module to generate iCal files and HTML tables based on Blind Brook
 - Add unlimited classes
 - Generate a printable HTML table schedule
 - Generate an iCal file schedule
+- Autosave schedule inputs (localStorage)
 
 ## Installation
 
