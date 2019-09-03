@@ -15,7 +15,14 @@ const year = new Date().getFullYear();
  * @return {ICalGenerator.ICalCalendar}
  */
 module.exports.generateCal = (studentScheduleClasses) => {
-    const cal = ical({name: `BB Schedule ${year} - iCal`, timezone: 'America/New_York'});
+    const cal = ical({
+            name: `BB Schedule ${year} - iCal`,
+            timezone: 'America/New_York',
+            prodId: {
+                company: 'bbscheduler.com',
+                product: 'ical-generator'
+            },
+        });
     letter_days.forEach(day => {
         const classesOnThisDay = studentScheduleClasses.filter(aClass => aClass["letter-days"].includes(day.letter));
         const todaysPeriodOrder = periodOrder[day.letter];
