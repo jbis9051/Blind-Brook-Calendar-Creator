@@ -6,15 +6,16 @@ const letter_days = require('./letter_days.js')(path.join(__dirname, '..', 'asse
 const periodTimes = require('../assets/json/times.json');
 const periodOrder = require('../assets/json/schedule.json');
 
-
+const lunchTimes = periodTimes.find(period => period.period === "lunch");
 
 const year = new Date().getFullYear();
 /**
  *
  * @param studentScheduleClasses
+ * @param includeLunch
  * @return {ICalGenerator.ICalCalendar}
  */
-module.exports.generateCal = (studentScheduleClasses) => {
+module.exports.generateCal = (studentScheduleClasses,includeLunch) => {
     const cal = ical({
             name: `BB Schedule ${year} - iCal`,
             timezone: 'America/New_York',
@@ -24,6 +25,14 @@ module.exports.generateCal = (studentScheduleClasses) => {
             },
         });
     letter_days.forEach(day => {
+        if(includeLunch){
+            cal.createEvent({
+                start: dateAndTimeToDate(day.start, lunchTimes.from),
+                end: dateAndTimeToDate(day.start, lunchTimes.to),
+                summary: "Lunch",
+                location: "Cafeteria",
+            });
+        }
         const classesOnThisDay = studentScheduleClasses.filter(aClass => aClass["letter-days"].includes(day.letter));
         const todaysPeriodOrder = periodOrder[day.letter];
         classesOnThisDay.forEach(aClass => {

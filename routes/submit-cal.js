@@ -17,7 +17,7 @@ router.post('/', function (req, res, next) {
     getStudentClasses(req.body).then(studentClasses => {
         let ical = "";
         try {
-            ical = generateCal(studentClasses);
+            ical = generateCal(studentClasses,req.body["lunch"] === "on");
             res.setHeader('Content-disposition', `attachment; filename=bbcalendar${new Date().getFullYear()}.ics`);
             res.setHeader('Content-type', "text/calendar");
             res.send(ical.toString());
