@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 const {generateHTML} = require('../ical/src/js/gen.js');
-const {getStudentClasses} = require('../src/js/getStudentClasses.js');
+const {getStudentClassesAndType} = require('../src/js/getStudentClassesAndType.js');
 
 const error = (title, message) => ` <h1>${title}</h1><p>${message}</p>`;
 
@@ -11,9 +11,9 @@ router.get('/', function (req, res, next) {
     res.send(error("An Error occurred", "No data was submitted."));
 });
 router.post('/', function (req, res, next) {
-    getStudentClasses(req.body).then(studentClasses => {
+    getStudentClassesAndType(req.body).then(({studentClasses,type})=> {
         try {
-            const html = generateHTML(studentClasses);
+            const html = generateHTML(studentClasses,type);
             res.send(html);
         } catch (e) {
             console.error(e.stack);

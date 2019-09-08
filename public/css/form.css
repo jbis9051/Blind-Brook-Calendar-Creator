@@ -83,9 +83,20 @@ select {
     text-align: center;
     font-size: 20px;
 }
+.school-selector-label {
+    display: block;
+    font-size: 20px;
+    margin: 10px 0;
+}
 .delete-button:hover {
     background: #bf000c;
 }
 .submit-error {
     text-align: center;
+}
+
+@media only screen and (max-width: 800px) {
+    .school-selector-label {
+      text-align: center;
+    }
 }

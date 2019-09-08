@@ -3,19 +3,37 @@ const ical = require('ical-generator');
 const cheerio = require('cheerio');
 
 const letter_days = require('./letter_days.js')(path.join(__dirname, '..', 'assets', 'ical', 'letter-days.ics'));
-const periodTimes = require('../assets/json/times.json');
+
 const periodOrder = require('../assets/json/schedule.json');
 
-const lunchTimes = periodTimes.find(period => period.period === "lunch");
+
 
 const year = new Date().getFullYear();
+
+function getTimes(type){
+    if(type === 1){
+        const periodTimes = require('../assets/json/times_high-school.json');
+        const lunchTimes = periodTimes.find(period => period.period === "lunch");
+        return {periodTimes: periodTimes, lunchTimes: lunchTimes};
+    } else  if(type === 0){
+        const periodTimes = require('../assets/json/times_middle-school.json');
+        const lunchTimes = periodTimes.find(period => period.period === "lunch");
+        return {periodTimes: periodTimes, lunchTimes: lunchTimes};
+    } else {
+        throw new Error("INVALID TYPE");
+    }
+}
+
 /**
  *
  * @param studentScheduleClasses
+ * @param type
  * @param includeLunch
  * @return {ICalGenerator.ICalCalendar}
  */
-module.exports.generateCal = (studentScheduleClasses,includeLunch) => {
+module.exports.generateCal = (studentScheduleClasses,type,includeLunch) => {
+    const {periodTimes,lunchTimes} = getTimes(type);
+
     const cal = ical({
             name: `BB Schedule ${year} - iCal`,
             timezone: 'America/New_York',
@@ -66,7 +84,9 @@ function timeFormat(time){
     }
     return `${hour}:${min}`;
 }
-module.exports.generateHTML = (studentScheduleClasses) => { //TODO: this should generate a table based off an object. getSchedule() returns an object and then construct html.
+module.exports.generateHTML = (studentScheduleClasses,type) => { //TODO: this should generate a table based off an object. getSchedule() returns an object and then construct html.
+    const {periodTimes} = getTimes(type);
+
     const $ =  cheerio.load(`<table><thead><tr><th></th></tr></thead><tbody></tbody></table>`);
     const letters =  Object.keys(periodOrder);
     letters.forEach(day => {

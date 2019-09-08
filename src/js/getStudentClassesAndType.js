@@ -1,8 +1,8 @@
-module.exports.getStudentClasses = (body)=>{
+module.exports.getStudentClassesAndType = (body)=>{
     return new Promise((resolve, reject) => {
         body = JSON.parse(JSON.stringify(body)); // the fact that i have to do this is ridiculous. I want a refund.
 
-        if(!body.hasOwnProperty("names[]") || !body.hasOwnProperty("periods[]") || !body.hasOwnProperty("letters[]") || !body.hasOwnProperty("rooms[]")){
+        if(!body.hasOwnProperty("names[]") || !body.hasOwnProperty("periods[]") || !body.hasOwnProperty("letters[]") || !body.hasOwnProperty("rooms[]") || !body.hasOwnProperty("type")){
             reject({
                 errorTitle: "An Error occurred",
                 errorMessage: "Missing data."
@@ -26,6 +26,10 @@ module.exports.getStudentClasses = (body)=>{
             reject({errorTitle: "An Error occurred", errorMessage: "Invalid input."});
             return;
         }
+        if (isNaN(body["type"]) || !(parseInt(body["type"]) === 0 || parseInt(body["type"]) === 1) ) { // some more simple server side validation
+            reject({errorTitle: "An Error occurred", errorMessage: "Invalid input."});
+            return;
+        }
         const studentClasses = [];
         body["names[]"].forEach((val, index) => {
             studentClasses.push({
@@ -35,6 +39,6 @@ module.exports.getStudentClasses = (body)=>{
                 period: parseInt(body["periods[]"][index])
             });
         });
-        resolve(studentClasses);
+        resolve({studentClasses: studentClasses,type: parseInt(body["type"])});
     });
 };

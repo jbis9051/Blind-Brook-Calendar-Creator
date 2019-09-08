@@ -54,6 +54,15 @@
     <p class="num-class">Number of classes: <span id="class-counter">0</span></p>
     <form method="POST" action="/submit-cal" id="main_form">
         <div class="lunch-selector checkbox-wrapper"><label><input type="checkbox" name="lunch"><span>Include lunch in calendar file</span></label></div>
+        <label>
+            <span class="school-selector-label">Select A School Type:</span>
+            <select id="type_selector" name="type">
+                <option disabled>Select A Type</option>
+                <option value="0">Middle School</option>
+                <option value="1" selected>High School</option>
+            </select>
+        </label>
+        <hr>
     </form>
     <button class="standard-button" id="submit-button">Download</button>
 </div>
@@ -81,9 +90,10 @@
     <input type="text" class="room" placeholder="Room" name="rooms[]">
 <button class="delete-button" type="button">×</button>`;
 
-    let autosaved = window.localStorage.getItem("student-data");
-    if(autosaved && (autosaved = JSON.parse(autosaved))&& autosaved.length > 0){
-        autosaved.forEach(cl => {
+    let autosaved = window.localStorage.getItem("student-data-2.0");
+    if(autosaved && (autosaved = JSON.parse(autosaved)) && autosaved.classes.length > 0){
+        $('#type_selector').selectedIndex = autosaved.type;
+        autosaved.classes.forEach(cl => {
             addClass(cl.name,cl.period,cl.letters,cl.room);
         });
     } else {
@@ -206,11 +216,12 @@
             $('#submit-message').setAttribute("active", "");
         }
     });
+    $('#type_selector').addEventListener("change", e => saveToStorage());
     function saveToStorage() {
         console.log("Autosave");
-        window.localStorage.setItem("student-data",JSON.stringify(arrayFromInputs()));
+        window.localStorage.setItem("student-data-2.0",JSON.stringify(objectFromInputs()));
     }
-    function arrayFromInputs() {
+    function objectFromInputs() {
         let array = [];
         $$('.class-input-group').forEach(el => {
             array.push({
@@ -220,7 +231,7 @@
                 room: el.querySelector('.room').value
             });
         });
-        return array;
+        return {type: $('#type_selector').selectedIndex,classes: array};
     }
 
     $('#open-import-button').addEventListener("click",(ev => {

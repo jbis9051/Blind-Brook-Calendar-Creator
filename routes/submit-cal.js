@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 
-const {getStudentClasses} = require('../src/js/getStudentClasses');
+const {getStudentClassesAndType} = require('../src/js/getStudentClassesAndType');
 
 const {generateCal} = require('../ical/src/js/gen.js');
 
@@ -14,10 +14,10 @@ router.get('/', function (req, res, next) {
     });
 });
 router.post('/', function (req, res, next) {
-    getStudentClasses(req.body).then(studentClasses => {
+    getStudentClassesAndType(req.body).then(({studentClasses,type}) => {
         let ical = "";
         try {
-            ical = generateCal(studentClasses,req.body["lunch"] === "on");
+            ical = generateCal(studentClasses,type,req.body["lunch"] === "on");
             res.setHeader('Content-disposition', `attachment; filename=bbcalendar${new Date().getFullYear()}.ics`);
             res.setHeader('Content-type', "text/calendar");
             res.send(ical.toString());
