@@ -30,14 +30,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-<div class="header-container">
-    <h1 class="tile">Blind Brook Schedule Creator 2019</h1>
-    <b style="font-size: 20px">If you generated a schedule before Aug 30th @ 7:30pm there was an issue that combined all schedules. Please delete your old schedule and regenerate.</b>
-    <p class="description">Enter your classes below or import them from eSchoolData and a schedule will be generated based off of the the current block
-        schedule. When you're done, click the "Done" button at the bottom of the page.</p>
-</div>
+<%- include header.ejs %>
 <div active id="main" class="content-container">
     <div class="directions-wrapper">
+        <b style="font-size: 20px">If you generated a schedule before Aug 30th @ 7:30pm there was an issue that combined all schedules. Please delete your old schedule and regenerate.</b>
+        <p class="description">Enter your classes below or import them from eSchoolData and a schedule will be generated based off of the the current block
+            schedule. When you're done, click the "Done" button at the bottom of the page.</p>
         <p>For "Letter Days", input the letter days the class applies to separated by commas. For example
             "A,C,D,F,G,H".</p>
         <p>Room is optional.</p>

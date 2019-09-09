@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    res.render('indexdev', { startingClassAmount: 8 });
+  res.render('about');
 });
 
 module.exports = router;

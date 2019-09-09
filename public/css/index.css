@@ -1,5 +1,6 @@
 .directions-wrapper {
     font-size: 20px;
+    text-align: center;
 }
 
 .content-container {
@@ -34,6 +35,11 @@
 
 a {
     color: #00B7FF;
+}
+
+
+.footer-container {
+    margin-top: 50px;
 }
 
 
