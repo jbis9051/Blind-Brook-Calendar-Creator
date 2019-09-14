@@ -184,11 +184,21 @@ $('#import-button').addEventListener("click", (ev => {
         if (parseInt(attributes[1]) === 9) { // community service will be the only thing 9th period and it is not included on the schedule so we skip it
             return;
         }
+        attributes[4] = attributes[4].replace(/(.?)(\/)(.?)/g, (match,$1,$2,$3) => { // this is to allow the browser to line break on "/". It pads it with spaces transforming it into " / ".
+            if($1 !== "" && $1 !== " "){ // if its the beginning of the string or it already has a space skip
+                $1 = $1 + " ";
+            }
+            if($3 !== "" && $3 !== " "){ // if its the end of the string or it already has a space skip
+                $3 = " " + $3;
+            }
+            return $1 + $2 + $3;
+        });
         addClass(attributes[4], attributes[1], attributes[0], attributes[2],attributes[6]);
     });
     $('.import-container').removeAttribute("active");
     saveToStorage();
 }));
+
 
 $('#teacher-toggle').addEventListener('change', evt => {
     if($('#teacher-toggle').checked){

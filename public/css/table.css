@@ -1,18 +1,19 @@
 table {
-    table-layout: auto;
+    table-layout: fixed;
     width: 100%;
     border-collapse: collapse;
     border: 3px solid black;
     font-size: 30px;
 }
 .time {
-    font-size: 1.2rem;
+    font-size: 20px;
 }
 .lunch {
     background: #c5dbf0;
 }
 .class {
     font-size: 13px;
+    overflow: hidden;
 }
 table, th, td {
     text-align: center;
@@ -20,9 +21,9 @@ table, th, td {
     border: 1px solid black;
 }
 th {
-   width: 200px;
+   width: 12%;
 }
 th:first-child {
-    width: 25rem;
+    width: 15%;
 }
 
