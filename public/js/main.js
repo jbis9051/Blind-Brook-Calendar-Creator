@@ -5,13 +5,14 @@ const class_form_html = `<input type="text" class="class-name" placeholder="Clas
     <input type="tel"  class="period" min="1" max="9" step="1" placeholder="Period" name="periods[]">
     <input type="text"  class="letter-name" placeholder="Letter Days" name="letters[]">
     <input type="text" class="room" placeholder="Room" name="rooms[]">
+    <input type="text" class="teacher" placeholder="Teacher" name="teachers[]">
 <button class="delete-button" type="button">×</button>`;
 
 let autosaved = window.localStorage.getItem("student-data-2.0");
 if (autosaved && (autosaved = JSON.parse(autosaved)) && autosaved.classes.length > 0) {
     $('#type_selector').selectedIndex = autosaved.type;
     autosaved.classes.forEach(cl => {
-        addClass(cl.name, cl.period, cl.letters, cl.room);
+        addClass(cl.name, cl.period, cl.letters, cl.room,cl.teacher);
     });
 } else {
     for (let i = 0; i < startingClassAmount; i++) {
@@ -95,8 +96,9 @@ function updateClassCounter() {
  * @param period
  * @param letterday
  * @param room
+ * @param teacher
  */
-function addClass(name = undefined, period = undefined, letterday = undefined, room = undefined) {
+function addClass(name = undefined, period = undefined, letterday = undefined, room = undefined, teacher = undefined) {
     const div = document.createElement('div');
     div.classList.add('class-input-group');
     div.innerHTML = class_form_html;
@@ -104,7 +106,8 @@ function addClass(name = undefined, period = undefined, letterday = undefined, r
         div.querySelector('.class-name').value = name;
         div.querySelector('.period').value = period;
         div.querySelector('.letter-name').value = letterday;
-        div.querySelector('.room').value = room;
+        div.querySelector('.room').value = room || "";
+        div.querySelector('.teacher').value = teacher || "";
     }
     $('#main_form').append(div);
     updateClassCounter();
@@ -127,6 +130,14 @@ $('#submit-button').addEventListener('click', e => {
             body: data
         }).then(res => res.text()).then(html => {
             $('#printable_schedule').innerHTML = html + `<p class="only-print">Created by bbscheduler.com Copyright &copy; ${new Date().getFullYear()} Josh Brown </p>`;
+            if($$('table .room').length === 0){
+                $('#room-toggle').setAttribute('disabled','');
+                $('#room-toggle').checked = false;
+            }
+            if($$('table .teacher').length === 0){
+                $('#teacher-toggle').setAttribute('disabled','');
+                $('#teacher-toggle').checked = false;
+            }
             $('#main_form').submit();
         });
         $('#main').removeAttribute("active");
@@ -147,7 +158,8 @@ function objectFromInputs() {
             name: el.querySelector('.class-name').value,
             period: el.querySelector('.period').value,
             letters: el.querySelector('.letter-name').value,
-            room: el.querySelector('.room').value
+            room: el.querySelector('.room').value,
+            teacher: el.querySelector('.teacher').value
         });
     });
     return {type: $('#type_selector').selectedIndex, classes: array};
@@ -172,8 +184,23 @@ $('#import-button').addEventListener("click", (ev => {
         if (parseInt(attributes[1]) === 9) { // community service will be the only thing 9th period and it is not included on the schedule so we skip it
             return;
         }
-        addClass(attributes[4], attributes[1], attributes[0], attributes[2]);
+        addClass(attributes[4], attributes[1], attributes[0], attributes[2],attributes[6]);
     });
     $('.import-container').removeAttribute("active");
     saveToStorage();
 }));
+
+$('#teacher-toggle').addEventListener('change', evt => {
+    if($('#teacher-toggle').checked){
+        $$('table .teacher').forEach(el => el.removeAttribute('hidden'));
+    } else {
+        $$('table .teacher').forEach(el => el.setAttribute('hidden',''))
+    }
+});
+$('#room-toggle').addEventListener('change', evt => {
+    if($('#room-toggle').checked){
+        $$('table .room').forEach(el => el.removeAttribute('hidden'));
+    } else {
+        $$('table .room').forEach(el => el.setAttribute('hidden',''))
+    }
+});

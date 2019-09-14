@@ -2,7 +2,7 @@ module.exports.getStudentClassesAndType = (body)=>{
     return new Promise((resolve, reject) => {
         body = JSON.parse(JSON.stringify(body)); // the fact that i have to do this is ridiculous. I want a refund.
 
-        if(!body.hasOwnProperty("names[]") || !body.hasOwnProperty("periods[]") || !body.hasOwnProperty("letters[]") || !body.hasOwnProperty("rooms[]") || !body.hasOwnProperty("type")){
+        if(!body.hasOwnProperty("names[]") || !body.hasOwnProperty("periods[]") || !body.hasOwnProperty("letters[]") || !body.hasOwnProperty("rooms[]") || !body.hasOwnProperty("teachers[]") || !body.hasOwnProperty("type")){
             reject({
                 errorTitle: "An Error occurred",
                 errorMessage: "Missing data."
@@ -14,6 +14,7 @@ module.exports.getStudentClassesAndType = (body)=>{
             body["periods[]"] = [body["periods[]"]];
             body["letters[]"] = [body["letters[]"]];
             body["rooms[]"] = [body["rooms[]"]];
+            body["teachers[]"] = [body["teachers[]"]];
         }
         if (body["names[]"].length !== body["periods[]"].length || body["letters[]"].length !== body["names[]"].length) {
            reject( {
@@ -36,7 +37,8 @@ module.exports.getStudentClassesAndType = (body)=>{
                 name: val,
                 "letter-days": body["letters[]"][index].split(','),
                 room: body["rooms[]"][index] || "",
-                period: parseInt(body["periods[]"][index])
+                period: parseInt(body["periods[]"][index]),
+                teacher: body["teachers[]"][index] || ""
             });
         });
         resolve({studentClasses: studentClasses,type: parseInt(body["type"])});

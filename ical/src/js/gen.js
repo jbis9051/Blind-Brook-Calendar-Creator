@@ -113,7 +113,7 @@ module.exports.generateHTML = (studentScheduleClasses,type) => { //TODO: this sh
                 if(!theClass){
                     row('tr').append(`<td class="free">FREE</td>`);
                 } else {
-                    row('tr').append(`<td class="class">${theClass.name}${theClass.room !== "" ? `<br>${theClass.room}` : ""}</td>`);
+                    row('tr').append(`<td class="class">${theClass.name}${theClass.room !== "" ? `<span class="room"><br>${theClass.room}</span>` : ""}${theClass.teacher !== "" ? `<span class="teacher"><br>${theClass.teacher}</span>` : ""}</td>`);
                 }
             });
         }
