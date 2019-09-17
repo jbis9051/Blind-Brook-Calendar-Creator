@@ -3,9 +3,9 @@ const $$ = document.querySelectorAll.bind(document);
 
 const class_form_html = `<input type="text" class="class-name" placeholder="Class Name" name="names[]">
     <input type="tel"  class="period" min="1" max="9" step="1" placeholder="Period" name="periods[]">
-    <input type="text"  class="letter-name" placeholder="Letter Days" name="letters[]">
-    <input type="text" class="room" placeholder="Room" name="rooms[]">
-    <input type="text" class="teacher" placeholder="Teacher" name="teachers[]">
+    <input type="text"  class="letter-name" placeholder="Letter Days (e.g. &quot;A,C,D,F,G,H&quot;)" name="letters[]">
+    <input type="text" class="room" placeholder="Room (Optional)" name="rooms[]">
+    <input type="text" class="teacher" placeholder="Teacher (Optional)" name="teachers[]">
 <button class="delete-button" type="button">×</button>`;
 
 let autosaved = window.localStorage.getItem("student-data-2.0");
@@ -98,7 +98,7 @@ function updateClassCounter() {
  * @param room
  * @param teacher
  */
-function addClass(name = undefined, period = undefined, letterday = undefined, room = undefined, teacher = undefined) {
+function addClass(name, period, letterday, room, teacher,) {
     const div = document.createElement('div');
     div.classList.add('class-input-group');
     div.innerHTML = class_form_html;
@@ -138,6 +138,10 @@ $('#submit-button').addEventListener('click', e => {
                 $('#teacher-toggle').setAttribute('disabled','');
                 $('#teacher-toggle').checked = false;
             }
+            if($$('table .free-text').length === 0){
+                $('#free-toggle').setAttribute('disabled','');
+                $('#free-toggle').checked = false;
+            }
             $('#main_form').submit();
         });
         $('#main').removeAttribute("active");
@@ -176,25 +180,16 @@ $('#import-button').addEventListener("click", (ev => {
     });
     const input = $('.import-input').value;
     const classes = input.split("\n");
-    classes.forEach(aClass => {
-        const attributes = aClass.split("\t");
-        if (attributes[0] === "Days" || !attributes[0].match(/([A-H],?)*[A-H]$/)) { /* if they copied the headers or something else then skip it */
-            return;
-        }
-        if (parseInt(attributes[1]) === 9) { // community service will be the only thing 9th period and it is not included on the schedule so we skip it
-            return;
-        }
-        attributes[4] = attributes[4].replace(/(.?)(\/)(.?)/g, (match,$1,$2,$3) => { // this is to allow the browser to line break on "/". It pads it with spaces transforming it into " / ".
-            if($1 !== "" && $1 !== " "){ // if its the beginning of the string or it already has a space skip
-                $1 = $1 + " ";
-            }
-            if($3 !== "" && $3 !== " "){ // if its the end of the string or it already has a space skip
-                $3 = " " + $3;
-            }
-            return $1 + $2 + $3;
-        });
-        addClass(attributes[4], attributes[1], attributes[0], attributes[2],attributes[6]);
-    });
+    let classObjects;
+    if(classes.some(aClass => aClass.split("\t")[0].match(/([A-H],?)*[A-H]$/))){ // type == student
+        classObjects = studentScheduleToObject(input);
+    } else if (classes.some(aClass => aClass.split("\t")[2].match(/([A-H],?)*[A-H]$/))){ // type = teacher
+        classObjects = teacherScheduleToObject(input);
+    } else {
+        // uh oh
+        return;
+    }
+    classObjects.forEach(classObj => addClass(classObj.name,classObj.period,classObj.days,classObj.room,classObj.teacher));
     $('.import-container').removeAttribute("active");
     saveToStorage();
 }));
@@ -212,5 +207,12 @@ $('#room-toggle').addEventListener('change', evt => {
         $$('table .room').forEach(el => el.removeAttribute('hidden'));
     } else {
         $$('table .room').forEach(el => el.setAttribute('hidden',''))
+    }
+});
+$('#free-toggle').addEventListener('change', evt => {
+    if($('#free-toggle').checked){
+        $$('table .free-text').forEach(el => el.removeAttribute('hidden'));
+    } else {
+        $$('table .free-text').forEach(el => el.setAttribute('hidden',''))
     }
 });

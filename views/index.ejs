@@ -33,18 +33,13 @@
 <%- include header.ejs %>
 <div active id="main" class="content-container">
     <div class="directions-wrapper">
-        <b style="font-size: 20px">If you generated a schedule before Aug 30th @ 7:30pm there was an issue that combined all schedules. Please delete your old schedule and regenerate.</b>
         <p class="description">Enter your classes below or import them from eSchoolData and a schedule will be generated based off of the the current block
             schedule. When you're done, click the "Done" button at the bottom of the page.</p>
-        <p>For "Letter Days", input the letter days the class applies to separated by commas. For example
-            "A,C,D,F,G,H".</p>
-        <p>Room is optional.</p>
-        <p>To add more classes click the "Add Class" button below.</p>
-        <b>Click the "X" to delete classes you don't use.</b>
+        <p>Click the "X" to delete classes you don't use.</p>
     </div>
     <button class="standard-button"  id="open-import-button">Import From eSchool Data</button>
     <div class="import-container">
-        <p class="instructions">Copy and Paste Your Data from eSchool Data and then click import</p>
+        <p class="instructions">Copy and Paste Your Data from eSchool Data and then click import. Teachers schedules are supported as well.</p>
         <video playsinline autoplay loop muted src="/video/tutorialow.mp4" class="import-data-how-to"></video>
         <textarea placeholder="Paste Data" class="import-input"></textarea>
         <button class="standard-button" id="import-button">Import</button>
@@ -75,6 +70,7 @@
      <h1>Printable Schedule</h1>
     <div class="checkbox-wrapper"><label><input type="checkbox" checked id="teacher-toggle"><span>Show Teachers</span></label></div>
     <div class="checkbox-wrapper"><label><input type="checkbox" checked id="room-toggle"><span>Show Room</span></label></div>
+    <div class="checkbox-wrapper"><label><input type="checkbox" checked id="free-toggle"><span>Show Free Periods</span></label></div>
     <p>Go to File > Print to print this table. Make sure to choose landscape for the "Layout"/"Orientation".</p>
     <div id="printable_schedule" class="printable">
     </div>
@@ -83,6 +79,7 @@
 <script>
     const startingClassAmount = <%= startingClassAmount %>;
 </script>
+<script src="/js/importers.js"></script>
 <script src="/js/main.js"></script>
 </body>
 </html>

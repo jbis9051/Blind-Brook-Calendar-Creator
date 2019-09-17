@@ -111,7 +111,7 @@ module.exports.generateHTML = (studentScheduleClasses,type) => { //TODO: this sh
                 const thePeriod = periodOrder[day][period.period - 1];
                 const theClass = classesOnThisDay.find(aClass => aClass.period === thePeriod);
                 if(!theClass){
-                    row('tr').append(`<td class="free">FREE</td>`);
+                    row('tr').append(`<td class="free"><span class="free-text">FREE</span></td>`);
                 } else {
                     row('tr').append(`<td class="class">${theClass.name}${theClass.room !== "" ? `<span class="room"><br>${theClass.room}</span>` : ""}${theClass.teacher !== "" ? `<span class="teacher"><br>${theClass.teacher}</span>` : ""}</td>`);
                 }
