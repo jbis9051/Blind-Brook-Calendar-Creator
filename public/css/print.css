@@ -20,6 +20,11 @@ https://stackoverflow.com/a/2618980/7886229
         visibility: visible;
     }
 
+    .printable-show-background-color {
+        -webkit-print-color-adjust: exact !important;   /* Chrome, Safari */
+        color-adjust: exact !important;                 /*Firefox*/
+    }
+
     .printable {
         position: absolute;
         width: 100%;

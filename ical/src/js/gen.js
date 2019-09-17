@@ -97,7 +97,7 @@ module.exports.generateHTML = (studentScheduleClasses,type) => { //TODO: this sh
         const row = cheerio.load(`<table><tbody><tr></tr></tbody></table>`);
         let special = false;
         if(period.period === "lunch"){
-            special = `<td colspan="${letter_days.length}" class="lunch">LUNCH</td>`;
+            special = `<td colspan="${letter_days.length}" class="lunch printable-show-background-color">LUNCH</td>`;
         }
         if(period.period === "extra help"){
             special = `<td colspan="${letter_days.length}">EXTRA HELP</td>`;
