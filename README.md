@@ -7,6 +7,7 @@ A website and module to generate iCal files and HTML tables based on Blind Brook
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
+- [TODO](#TODO)
 - [Support](#support)
 - [Contributing](#contributing)
 
@@ -33,6 +34,12 @@ To start on port 3010:
 ```shell script
 npm run start
 ```
+
+## TODO
+- Colors - Make the printout scheduler colorful
+- Support Edge and IE - God help us
+- Modularize more (generate object then create HTML and iCal file)
+- iCal contain teachers names
 
 ## Support
 
