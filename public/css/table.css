@@ -15,6 +15,16 @@ table {
     font-size: 13px;
     overflow: hidden;
 }
+
+.class span {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+.class span[hidden] {
+    display: none;
+}
 table, th, td {
     text-align: center;
     text-overflow: ellipsis;

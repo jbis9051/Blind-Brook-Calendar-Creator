@@ -1,8 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
-const {generateHTML} = require('../ical/src/js/gen.js');
-const {getStudentClassesAndType} = require('../src/js/getStudentClassesAndType.js');
+
+const {getStudentClassesAndType} = require('../src/js/getStudentClassesAndType');
+
+const Scheduler = require('../SchedulerCreator/src/js/Schedule.js');
 
 const error = (title, message) => ` <h1>${title}</h1><p>${message}</p>`;
 
@@ -13,7 +15,8 @@ router.get('/', function (req, res, next) {
 router.post('/', function (req, res, next) {
     getStudentClassesAndType(req.body).then(({studentClasses,type})=> {
         try {
-            const html = generateHTML(studentClasses,type);
+            const scheduler = new Scheduler(studentClasses);
+            const html = scheduler.getExporter(type).toHTML();
             res.send(html);
         } catch (e) {
             console.error(e.stack);

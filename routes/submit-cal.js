@@ -4,7 +4,7 @@ var router = express.Router();
 
 const {getStudentClassesAndType} = require('../src/js/getStudentClassesAndType');
 
-const {generateCal} = require('../ical/src/js/gen.js');
+const Scheduler = require('../SchedulerCreator/src/js/Schedule.js');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -15,9 +15,9 @@ router.get('/', function (req, res, next) {
 });
 router.post('/', function (req, res, next) {
     getStudentClassesAndType(req.body).then(({studentClasses,type}) => {
-        let ical = "";
         try {
-            ical = generateCal(studentClasses,type,req.body["lunch"] === "on");
+            const scheduler = new Scheduler(studentClasses);
+            const ical = scheduler.getExporter(type).toiCal(req.body["lunch"] === "on");
             res.setHeader('Content-disposition', `attachment; filename=bbcalendar${new Date().getFullYear()}.ics`);
             res.setHeader('Content-type', "text/calendar");
             res.send(ical.toString());
