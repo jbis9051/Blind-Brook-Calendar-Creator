@@ -1,5 +1,11 @@
 const getScheduleTimes = require('../helpers/getScheduleTimes.js');
 
+/**
+ *
+ * @param scheduleObj
+ * @param {scheduleTypes} type
+ * @return {{}} timed schedule obj
+ */
 module.exports = (scheduleObj, type) => {
     const {periodTimes} = getScheduleTimes(type);
     let timedScheduleObj = {};

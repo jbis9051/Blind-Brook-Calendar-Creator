@@ -3,7 +3,12 @@ const ical = require('ical-generator');
 
 const letter_days = require('./letter_days.js')(path.join(__dirname, 'assets', 'ical', 'letter-days.ics'));
 
-
+/**
+ *
+ * @param timedScheduleObject
+ * @param includeLunch
+ * @return {ICalGenerator.ICalCalendar}
+ */
 module.exports = (timedScheduleObject, includeLunch) => {
     const year = new Date().getFullYear();
 

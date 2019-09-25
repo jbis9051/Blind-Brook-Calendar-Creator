@@ -1,7 +1,11 @@
 const scheduleTypes = require('../constants/scheduleTypes.js');
 
 const periodTimes = require('../../assets/json/times.json');
-
+/**
+ *
+ * @param scheduleType
+ * @return {{periodTimes: *, lunchTimes: *}}
+ */
 module.exports = (scheduleType) => {
     let periodTimeSelected;
     switch (scheduleType) {

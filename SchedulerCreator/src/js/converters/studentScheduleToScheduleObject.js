@@ -1,5 +1,9 @@
 const periodOrder = require('../../assets/json/schedule.json');
-
+/**
+ *
+ * @param studentSchedule
+ * @param strict
+ */
 module.exports = (studentSchedule, strict) => {
     const scheduleObj = {};
     Object.entries(periodOrder).forEach(([letterDay, order]) => {
