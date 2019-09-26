@@ -217,7 +217,7 @@ $('#free-toggle').addEventListener('change', evt => {
     if($('#free-toggle').checked){
         $$('table .free-text').forEach(el => el.removeAttribute('hidden'));
     } else {
-        $$('table .free-text').forEach(el => el.setAttribute('hidden',''))
+        $$('table .free-text').forEach(el => el.setAttribute('hidden',''));
     }
 });
 
@@ -225,6 +225,6 @@ $('#color-toggle').addEventListener('change', evt => {
     if($('#color-toggle').checked){
         $$('table .color').forEach(el => el.removeAttribute('hidden'));
     } else {
-        $$('table .color').forEach(el => el.setAttribute('hidden',''))
+        $$('table .color').forEach(el => el.setAttribute('hidden',''));
     }
 });
