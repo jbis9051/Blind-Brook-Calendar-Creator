@@ -12,10 +12,19 @@ function formatName(name) {
 
 
 function studentScheduleToObject(scheduleString) {
+    let classDelimiter;
+    let cellDelimiter;
+    if (scheduleString.indexOf("\t")) { // <rant> every normal browser who isn't stupid and inconsistent unlike ie and edge.
+        classDelimiter = "\n"; // normal
+        cellDelimiter = "\t"; // normal
+    } else { // ie / edge untested | Why microsoft? Why? I bet this copy method isn't even compatible with excel, a product you make. Did anyone think?</rant>
+        classDelimiter = "\n\n"; // wtf
+        cellDelimiter = "\n"; // wtf
+    }
     const classesArray  = [];
-    const classes = scheduleString.split("\n");
+    const classes = scheduleString.split(classDelimiter);
     classes.forEach(aClass => {
-        const attributes = aClass.split("\t");
+        const attributes = aClass.split(cellDelimiter);
         if (!attributes[0].match(/([A-H],?)*[A-H]$/)) { /* if they copied the headers or something else then skip it */
             return;
         }
