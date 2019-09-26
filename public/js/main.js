@@ -143,7 +143,7 @@ $('#submit-button').addEventListener('click', e => {
                 $('#free-toggle').checked = false;
             }
             if($$('table .color').length == 0) {
-                $('#color-toggle').setAttribute('disabled.','');
+                $('#color-toggle').setAttribute('disabled','');
                 $('#color-toggle').checked = false;
             }
             $('#main_form').submit();
