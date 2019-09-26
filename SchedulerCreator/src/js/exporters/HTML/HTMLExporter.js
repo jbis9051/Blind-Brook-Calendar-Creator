@@ -29,7 +29,7 @@ module.exports = (timedScheduleObject) => {
                 } else {
                     let classCode = `<td class="class">`;
                     if (theClass.color) {
-                        if(colors[i]) {
+                        if(colors[theClass.classNum]) {
                             classCode = `<td class="class" style="background-color: ${colors}">`;
                         } else {
                             let colorArray = [];
