@@ -142,6 +142,10 @@ $('#submit-button').addEventListener('click', e => {
                 $('#free-toggle').setAttribute('disabled','');
                 $('#free-toggle').checked = false;
             }
+            if($$('table .color').length == 0) {
+                $('#color-toggle').setAttribute('disabled.','');
+                $('#color-toggle').checked = false;
+            }
             $('#main_form').submit();
         });
         $('#main').removeAttribute("active");
@@ -214,5 +218,13 @@ $('#free-toggle').addEventListener('change', evt => {
         $$('table .free-text').forEach(el => el.removeAttribute('hidden'));
     } else {
         $$('table .free-text').forEach(el => el.setAttribute('hidden',''))
+    }
+});
+
+$('#color-toggle').addEventListener('change', evt => {
+    if($('#color-toggle').checked){
+        $$('table .color').forEach(el => el.removeAttribute('hidden'));
+    } else {
+        $$('table .color').forEach(el => el.setAttribute('hidden',''))
     }
 });
