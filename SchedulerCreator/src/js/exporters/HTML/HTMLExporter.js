@@ -28,24 +28,26 @@ module.exports = (timedScheduleObject) => {
                 if (theClass === null) {
                     row('tr').append(`<td class="free"><span class="free-text">FREE</span></td>`);
                 } else {
-                    let classCode = `<td class="class"><span class="name">${theClass.name}</span>`;
+                    let classCode = `<td class="class">`;
+                    if (theClass.color) {
+                        if(colors[i]) {
+                            classCode = `<td class="class" style="background-color: ${colors}">`;
+                        } else {
+                            let colorArray = [];
+                            for (_= 0;_<3;_++) {
+                                color.push(Math.floor(Math.random() * 255));
+                            }
+                            const newColor = `rgba("${colorArray[0]}","${colorArray[1]}", "${colorArray[2]}", .5)`;
+                            classCode = `<td class="class" style="background-color: ${newColor}">`;
+                            // In the case that all of the colors are used, the program would generate a new color with a light opacity in order for the class to be readable
+                        }
+                    }
+                    classCode += `<span class="name">${theClass.name}</span>`;
                     if (theClass.room) {
                         classCode += `<span class="room">${theClass.room}</span>`;
                     }
                     if (theClass.teacher) {
                         classCode += `<span class="teacher">${theClass.teacher}</span>`;
-                    }
-                    if (theClass.color) {
-                        if(colors[i]) {
-                            document.getElementsByClassName("class").style.backgroundColor = colors
-                        } else {
-                            let color = []
-                            for (_= 0;_<3;_++) {
-                                color.push(Math.floor(Math.random() * 255))
-                            }
-                            document.getElementsByClassName("class").style.backgroundColor = "rgba(" + color[0] + "," + color[1] + "," + color[2] + ", .5)"
-                            // In the case that all of the colors are used, the program would generate a new color with a light opacity in order for the class to be readable
-                        }
                     }
                     row('tr').append(classCode + `</td>`);
                 }
