@@ -220,11 +220,8 @@ $('#free-toggle').addEventListener('change', evt => {
         $$('table .free-text').forEach(el => el.setAttribute('hidden',''));
     }
 });
-
 $('#color-toggle').addEventListener('change', evt => {
-    if($('#color-toggle').checked){
-        $$('table .color').forEach(el => el.removeAttribute('hidden'));
-    } else {
-        $$('table .color').forEach(el => el.setAttribute('hidden',''));
+    if(!$('#color-toggle').checked){
+        //Resets the background color to white
     }
 });
