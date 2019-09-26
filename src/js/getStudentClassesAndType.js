@@ -40,7 +40,8 @@ module.exports.getStudentClassesAndType = (body) => {
                 "letter-days": body["letters[]"][index].split(','),
                 room: body["rooms[]"][index] || "",
                 period: parseInt(body["periods[]"][index]),
-                teacher: body["teachers[]"][index] || ""
+                teacher: body["teachers[]"][index] || "",
+                classNum: index,
             });
         });
         let scheduleType;
