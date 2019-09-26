@@ -7,6 +7,7 @@ module.exports = (timedScheduleObject) => {
         $('table thead tr').append(`<th class="letter">${day}</th>`);
     });
     const numOfClasses = Object.values(timedScheduleObject)[0].length;
+    const colors = ["tomato", "dodgerblue", "yellow", "orange", "mediumseagreen", "lightblue", "pink", "#d6ff99", "gainsboro", "#FAE7B5", "#a89de1", "burlywood"]
     for (let i = 0; i < numOfClasses; i++) {
         const row = cheerio.load(`<table><tbody><tr></tr></tbody></table>`);
         row('tr').append(`<td class="time">${timeFormat(timedScheduleObject["A"][i].from)} - ${timeFormat(timedScheduleObject["A"][i].to)}</td>`);
@@ -33,6 +34,18 @@ module.exports = (timedScheduleObject) => {
                     }
                     if (theClass.teacher) {
                         classCode += `<span class="teacher">${theClass.teacher}</span>`;
+                    }
+                    if (theClass.color) {
+                        if(colors[i]) {
+                            document.getElementsByClassName("class").style.backgroundColor = colors
+                        } else {
+                            let color = []
+                            for (_= 0;_<3;_++) {
+                                color.push(Math.floor(Math.random() * 255))
+                            }
+                            document.getElementsByClassName("class").style.backgroundColor = "rgba(" + color[0] + "," + color[1] + "," + color[2] + ", .5)"
+                            // In the case that all of the colors are used, the program would generate a new color with a light opacity in order for the class to be readable
+                        }
                     }
                     row('tr').append(classCode + `</td>`);
                 }
