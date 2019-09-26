@@ -7,7 +7,7 @@ module.exports = (timedScheduleObject) => {
         $('table thead tr').append(`<th class="letter">${day}</th>`);
     });
     const numOfClasses = Object.values(timedScheduleObject)[0].length;
-    const colors = ["tomato", "dodgerblue", "yellow", "orange", "mediumseagreen", "lightblue", "pink", "#d6ff99", "gainsboro", "#FAE7B5", "#a89de1", "burlywood"]
+    const colors = ["tomato", "dodgerblue", "yellow", "orange", "mediumseagreen", "lightblue", "pink", "#d6ff99", "gainsboro", "#FAE7B5", "#a89de1", "burlywood"];
     for (let i = 0; i < numOfClasses; i++) {
         const row = cheerio.load(`<table><tbody><tr></tr></tbody></table>`);
         row('tr').append(`<td class="time">${timeFormat(timedScheduleObject["A"][i].from)} - ${timeFormat(timedScheduleObject["A"][i].to)}</td>`);
