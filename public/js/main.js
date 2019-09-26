@@ -222,6 +222,6 @@ $('#free-toggle').addEventListener('change', evt => {
 });
 $('#color-toggle').addEventListener('change', evt => {
     if(!$('#color-toggle').checked){
-        //Resets the background color to white
+        $(selector).css('background','white');
     }
 });
