@@ -1,4 +1,5 @@
 const cheerio = require("cheerio");
+const colorsLength = require("./constants/colors.js").length;
 
 module.exports = (timedScheduleObject) => {
     const $ = cheerio.load(`<table><thead><tr><th></th></tr></thead><tbody></tbody></table>`);
@@ -27,7 +28,7 @@ module.exports = (timedScheduleObject) => {
                 if (theClass === null) {
                     row('tr').append(`<td class="free"><span class="free-text">FREE</span></td>`);
                 } else {
-                    let classCode = `<td class="class"><span class="name">${theClass.name}</span>`;
+                    let classCode = `<td class="class color printable-show-background-color" data-index="${theClass.classNum % colorsLength /* we mod this incase we don't have another color it will loop */}"><span class="name">${theClass.name}</span>`;
                     if (theClass.room) {
                         classCode += `<span class="room">${theClass.room}</span>`;
                     }

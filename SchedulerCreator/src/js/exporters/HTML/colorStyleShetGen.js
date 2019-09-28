@@ -8,7 +8,7 @@ const filePath = path.join(__dirname, '..', '..', '..', '..', '..', 'public', 'c
 
 const cssString = colors.map((color, index) => {
     return `
-.color[data="${index}"] {
+.color[data-index="${index}"] {
     background: ${color};
     color: ${isDark(color) ? "white" : "black"};
 }`.trim();

@@ -36,7 +36,7 @@ npm run start
 ```
 
 ## TODO
-- [ ] Colors - Make the printout scheduler colorful
+- [x] Colors - Make the printout scheduler colorful
 - [ ] Support Edge and IE - God help us
 - [x] Modularize more (generate object then create HTML and iCal file)
 - [ ] iCal contain teachers names

@@ -142,6 +142,10 @@ $('#submit-button').addEventListener('click', e => {
                 $('#free-toggle').setAttribute('disabled','');
                 $('#free-toggle').checked = false;
             }
+            if ($$('table .class').length === 0) {
+                $('#colors-toggle').setAttribute('disabled', '');
+                $('#colors-toggle').checked = false;
+            }
             $('#main_form').submit();
         });
         $('#main').removeAttribute("active");
@@ -173,21 +177,16 @@ $('#open-import-button').addEventListener("click", (ev => {
     $('.import-container').setAttribute("active", "");
 }));
 $('#import-button').addEventListener("click", (ev => {
+    $('.import-error').innerText = "";
     $$('.class-input-group').forEach(el => {
         if (el.querySelector('.class-name').value === "") {
             el.querySelector('.delete-button').click();
         }
     });
     const input = $('.import-input').value;
-    const classes = input.split("\n");
-    let classObjects;
-    if(classes.some(aClass => aClass.split("\t")[0].match(/([A-H],?)*[A-H]$/))){ // type == student
-        classObjects = studentScheduleToObject(input);
-    } else if (classes.some(aClass => aClass.split("\t")[2].match(/([A-H],?)*[A-H]$/))){ // type = teacher
-        classObjects = teacherScheduleToObject(input);
-    } else {
-        // uh oh
-        return;
+    let classObjects = scheduleToObject(input);
+    if (!classObjects) {
+        $('.import-error').innerText = "An error occurred while importing. Internet Explorer and Edge are not supported, please use Google Chrome, Safari, Firefox, or just about any other browser."
     }
     classObjects.forEach(classObj => addClass(classObj.name,classObj.period,classObj.days,classObj.room,classObj.teacher));
     $('.import-container').removeAttribute("active");
@@ -214,5 +213,12 @@ $('#free-toggle').addEventListener('change', evt => {
         $$('table .free-text').forEach(el => el.removeAttribute('hidden'));
     } else {
         $$('table .free-text').forEach(el => el.setAttribute('hidden',''))
+    }
+});
+$('#colors-toggle').addEventListener('change', evt => {
+    if ($('#colors-toggle').checked) {
+        $$('table .class').forEach(el => el.classList.add('color'))
+    } else {
+        $$('table .class').forEach(el => el.classList.remove('color'));
     }
 });

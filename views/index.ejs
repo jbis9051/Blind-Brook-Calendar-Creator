@@ -8,6 +8,7 @@
     <link rel='stylesheet' href='/css/import.css?v=2'/>
     <link rel='stylesheet' href='/css/table.css?v=3'/>
     <link rel='stylesheet' href='/css/print.css?v=3'/>
+    <link rel='stylesheet' href='/css/colors-gen.css'/>
 
     <meta property="og:title" content="Blind Brook Scheduler"/>
     <meta property="og:image" content="https://bbscheduler.com/favicon/logo.png"/>
@@ -15,8 +16,6 @@
     <meta property="og:url" content="https://bbscheduler.com"/>
     <meta name="description"
           content="Generate iCal files and a printable schedule for your Blind Brook Schedule using bbscheduler.com. Keywords: BB Scheduler, Blind Brook schedule creator, blind brook schedule generator">
-
-
 
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png?v=rMJqN4q9KJ">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png?v=rMJqN4q9KJ">
@@ -42,6 +41,7 @@
         <p class="instructions">Copy and Paste Your Data from eSchool Data and then click import. Teachers schedules are supported as well.</p>
         <video playsinline autoplay loop muted src="/video/tutorialow.mp4" class="import-data-how-to"></video>
         <textarea placeholder="Paste Data" class="import-input"></textarea>
+        <span class="import-error"></span>
         <button class="standard-button" id="import-button">Import</button>
     </div>
     <button class="standard-button" id="add-class-button">Add Class</button>
@@ -71,6 +71,8 @@
     <div class="checkbox-wrapper"><label><input type="checkbox" checked id="teacher-toggle"><span>Show Teachers</span></label></div>
     <div class="checkbox-wrapper"><label><input type="checkbox" checked id="room-toggle"><span>Show Room</span></label></div>
     <div class="checkbox-wrapper"><label><input type="checkbox" checked id="free-toggle"><span>Show Free Periods</span></label></div>
+    <div class="checkbox-wrapper"><label><input type="checkbox" checked
+                                                id="colors-toggle"><span>Show Background Colors</span></label></div>
     <p>Go to File > Print to print this table. Make sure to choose landscape for the "Layout"/"Orientation".</p>
     <div id="printable_schedule" class="printable">
     </div>
