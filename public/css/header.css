@@ -22,6 +22,11 @@ body {
     text-decoration: none;
     color: inherit;
 }
+
+.year-version {
+    font-weight: bold;
+    font-size: 30px;
+}
 .footer-container {
     padding: 15px 10px;
     display: flex;

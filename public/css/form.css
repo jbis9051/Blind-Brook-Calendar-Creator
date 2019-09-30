@@ -5,10 +5,9 @@
 
 input,select {
     font-size: 18px;
-    padding: 5px;
     border-radius: 0.25rem;
-    border: 1px solid #dedede;
-    padding-left: 10px;
+    border: 1px solid #c4c4c4;
+    padding: 5px 5px 5px 10px;
     margin-bottom: 10px;
     width: 100%;
     display: block;
@@ -50,6 +49,10 @@ select {
     cursor: pointer;
     display: block;
     font-size: 18px;
+}
+
+.standard-button[hidden] {
+    display: none;
 }
 .standard-button:hover  {
     color: #e8e8e8;

@@ -36,9 +36,10 @@
             schedule. When you're done, click the "Done" button at the bottom of the page.</p>
         <p>Click the "X" to delete classes you don't use.</p>
     </div>
-    <button class="standard-button"  id="open-import-button">Import From eSchool Data</button>
+    <button class="standard-button" id="open-import-button">Import From eSchoolData</button>
     <div class="import-container">
-        <p class="instructions">Copy and Paste Your Data from eSchool Data and then click import. Teachers schedules are supported as well.</p>
+        <p class="instructions">Copy and Paste your Data from eSchoolData below and then click import. Teachers
+            schedules are supported as well.</p>
         <video playsinline autoplay loop muted src="/video/tutorialow.mp4" class="import-data-how-to"></video>
         <textarea placeholder="Paste Data" class="import-input"></textarea>
         <span class="import-error"></span>
@@ -80,8 +81,12 @@
 <%- include footer.ejs %>
 <script>
     const startingClassAmount = <%= startingClassAmount %>;
+    const $ = document.querySelector.bind(document);
+    const $$ = document.querySelectorAll.bind(document);
 </script>
 <script src="/js/importers.js"></script>
+<script src="/js/htmlSchedule.js"></script>
+<script src="/js/validation.js"></script>
 <script src="/js/main.js"></script>
 </body>
 </html>

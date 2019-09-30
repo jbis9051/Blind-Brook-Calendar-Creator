@@ -1,7 +1,7 @@
 .import-container {
     display: none;
     margin: 0;
-    border: solid #dddddd 1px;
+    border: solid #c4c4c4 1px;
     border-radius: 0.25rem;
     padding: 10px;
 }
@@ -21,7 +21,8 @@
     font-size: 18px;
     padding: 10px;
     border-radius: 0.25rem;
-    border: 1px solid #dedede;
+    border: 1px solid #c4c4c4;
+    margin-top: 10px;
     margin-bottom: 10px;
     width: 100%;
     display: block;
