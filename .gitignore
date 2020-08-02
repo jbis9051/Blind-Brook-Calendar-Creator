@@ -1,4 +1,5 @@
-# Project exclude paths
+.DS_Store
+/build/
 /node_modules/
 /.idea/
-/SchedulerCreator/src/tests/
+/.next/
