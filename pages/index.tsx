@@ -1,5 +1,8 @@
-import Head from 'next/head'
+import {MainLayout} from "../components/MainLayout";
 
-export default function Home() {
-  return <span>Hello World!</span>
+export default function Home(){
+    return (
+        <MainLayout>
+        </MainLayout>
+    )
 }
