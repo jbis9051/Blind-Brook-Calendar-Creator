@@ -1,21 +1,13 @@
 {
-  "name": "bb-calendar-creator",
+  "name": "@bb-schedler/bb-scheduler",
   "version": "2.1.0",
-  "description": "A website to generate iCal files and HTML tables based on Blind Brook's rotating block schedule and letter day calendar.",
   "private": true,
+  "description": "A website and module to generate iCal files and HTML tables based on Blind Brook's rotating block schedule and letter day calendar.",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "setup": "lerna bootstrap",
+    "start": "lerna run --parallel start"
   },
   "dependencies": {
-    "next": "9.5.1",
-    "react": "16.13.1",
-    "react-dom": "16.13.1"
-  },
-  "devDependencies": {
-    "@types/react": "^16.9.44",
-    "typescript": "^3.9.7",
-    "typescript-plugin-css-modules": "^2.4.0"
+    "lerna": "^3.22.1"
   }
 }
