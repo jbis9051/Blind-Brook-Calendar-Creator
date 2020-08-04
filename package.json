@@ -9,6 +9,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "ajv": "^6.12.3",
     "next": "9.5.1",
     "react": "16.13.1",
     "react-dom": "16.13.1"
