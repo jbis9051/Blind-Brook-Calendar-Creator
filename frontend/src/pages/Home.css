@@ -1,0 +1,78 @@
+.import-container {
+    display: flex;
+}
+
+.import-container > * {
+    flex: 1;
+}
+
+.import-input {
+    font-size: 18px;
+    padding: 10px;
+    border-radius: 0.25rem;
+    border: 1px solid #c4c4c4;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+    resize: none;
+    height: 200px;
+    font-family: monospace;
+}
+
+
+.school-selector {
+    width: 100%;
+    max-width: 800px;
+    margin: 15px auto;
+    border: 1px #ff2826 solid;
+    border-radius: 60px;
+    display: flex;
+    overflow: hidden;
+}
+
+.school-switch {
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    flex: 1;
+    padding: 8px;
+    text-align: center;
+    border-right: 1px solid #ff2826;
+    position: relative;
+    font-weight: 500;
+    color: #131313;
+    background: inherit;
+    transition: background-color 100ms, color 100ms;
+}
+
+.school-switch:last-child {
+    border: none;
+}
+
+.school-switch.selected {
+    background: #ff2826;
+    color: white;
+}
+
+
+.standard-button {
+    margin: 15px auto;
+    padding: 10px 60px;
+    background-color: #ff2826;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    font-size: 18px;
+}
+
+.standard-button[hidden] {
+    display: none;
+}
+.standard-button:hover  {
+    color: #e8e8e8;
+    background-color: #98000b;
+}

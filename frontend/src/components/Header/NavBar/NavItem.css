@@ -1,0 +1,20 @@
+.nav-item {
+    display: inline-block;
+    box-sizing: border-box;
+    text-align: center;
+    margin: 10px 10px 0;
+}
+
+.nav-item > a, .nav-item > span {
+    display: block;
+    padding: 10px 40px;
+    background: #b00004;
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.nav-item > a:hover, .nav-item > span:hover {
+    background: #630004;
+}

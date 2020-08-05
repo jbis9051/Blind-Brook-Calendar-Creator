@@ -1,0 +1,8 @@
+.content-container {
+    width: 100%;
+    max-width: 1335px;
+    margin: 30px 30px;
+    padding: 10px;
+    background: white;
+    border-radius: 0.25rem;
+}

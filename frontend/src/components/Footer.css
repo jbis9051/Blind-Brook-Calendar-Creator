@@ -1,0 +1,16 @@
+.footer-container {
+    padding: 15px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #b00004;
+    text-align: center;
+    color: white;
+}
+.copyright a {
+    color: white;
+    text-decoration: none;
+}
+.copyright a:hover {
+    text-decoration: underline;
+}
