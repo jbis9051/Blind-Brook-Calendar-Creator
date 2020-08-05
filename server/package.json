@@ -1,6 +1,7 @@
 {
-  "name": "@bb-schedler/server",
+  "name": "@bb-scheduler/server",
   "version": "0.0.0",
+  "private": true,
   "scripts": {
     "build": "tsc",
     "start": "ts-node-dev bin/www.ts"
