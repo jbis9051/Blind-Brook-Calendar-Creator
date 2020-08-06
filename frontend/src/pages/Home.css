@@ -26,7 +26,7 @@
     width: 100%;
     max-width: 800px;
     margin: 15px auto;
-    border: 1px #ff2826 solid;
+    border: 1px #ff4a3d solid;
     border-radius: 60px;
     display: flex;
     overflow: hidden;
@@ -39,10 +39,10 @@
     flex: 1;
     padding: 8px;
     text-align: center;
-    border-right: 1px solid #ff2826;
+    border-right: 1px solid #ff4a3d;
     position: relative;
-    font-weight: 500;
-    color: #131313;
+    font-weight: 400;
+    color: #ff4a3d;
     background: inherit;
     transition: background-color 100ms, color 100ms;
 }
@@ -52,27 +52,12 @@
 }
 
 .school-switch.selected {
-    background: #ff2826;
+    font-weight: 500;
+    background: #ff4a3d;
     color: white;
 }
 
-
-.standard-button {
-    margin: 15px auto;
-    padding: 10px 60px;
-    background-color: #ff2826;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    display: block;
-    font-size: 18px;
-}
-
-.standard-button[hidden] {
-    display: none;
-}
-.standard-button:hover  {
-    color: #e8e8e8;
-    background-color: #98000b;
+.help-button {
+    margin: 15px 10px;
+    padding: 6px 30px;
 }
