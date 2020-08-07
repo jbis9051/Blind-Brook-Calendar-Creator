@@ -19,21 +19,26 @@ export const inputToSchedule = (schedule: ScheduleInput): Schedule => {
         H: []
     };
     const { school, classes } = schedule;
-    const highSchool = schedule.school === SchoolType.HIGH_SCHOOL;
-    const middleSchool = schedule.school === SchoolType.MIDDLE_SCHOOL;
     const days = Object.values(InClassSchedule);
     const classTimes = InClassTimes[school as SchoolType];
 
     days.forEach((day, index) => {
         const letterDay = Object.keys(InClassSchedule)[index];
         const classesForLetterDay = [];
+        let pastLunch = false;
         day.forEach((dayPeriod, periodIndex) => {
-            const { from, to } = classTimes[periodIndex];
-            const time = { from, to };
+            let { from, to } = classTimes[periodIndex];
+            let time = { from, to };
 
             if (classTimes[periodIndex].period === SpecialPeriod.LUNCH) {
-                const period = classTimes[periodIndex];
+                const period = classTimes[periodIndex].period;
                 classesForLetterDay.push({period, time});
+                pastLunch = true;
+            }
+
+            if (pastLunch) {
+                ({ from, to } = classTimes[periodIndex + 1]);
+                (time = { from, to });
             }
 
             const classForAssignedPeriod = classes.find(schoolClass => {
