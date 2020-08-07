@@ -34,40 +34,28 @@ export const inputToSchedule = (schedule: ScheduleInput): Schedule => {
                 return schoolClass.period === dayPeriod && matchedLetterDay;
             });
 
-            const { to: timeFrom, from: timeTo } = classTimes[periodIndex];
-            
+            const { from, to } = classTimes[periodIndex];
+            let classToAdd: Period | Class;
+
             if (classForAssignedPeriod) {
                 const id = classes.indexOf(classForAssignedPeriod);
                 const { period, name, room, teacher } = classForAssignedPeriod;
-                const classObject: Class = {
-                    period,
-                    name,
-                    time: {
-                        from: timeFrom,
-                        to: timeTo
-                    },
-                    id,
-                    room,
-                    teacher
-                }
-                scheduleObject[letterDay as keyof Schedule].push(classObject);
+                classToAdd = { period, name, room, teacher, id, time: { from, to } };
             } else {
-                const freeObject: Period = {
+                classToAdd = {
                     period: SpecialPeriod.FREE,
-                    time: {
-                        from: timeFrom,
-                        to: timeTo
-                    }
+                    time: { from, to }
                 }
-                scheduleObject[letterDay as keyof Schedule].push(freeObject);
             }
+
+            scheduleObject[letterDay as keyof Schedule].push(classToAdd);
 
             const lunchHighSchool = highSchool && periodIndex === 2;
             const lunchMiddleSchool = middleSchool && periodIndex === 3;
 
             if (lunchHighSchool || lunchMiddleSchool) {
                 const { period, from, to } = classTimes[periodIndex + 1];
-                scheduleObject[letterDay as keyof Schedule].push({ period, time: { from, to }});
+                scheduleObject[letterDay as keyof Schedule].push({period, time: { from, to }});
             }
         });
         const { period, from, to } = classTimes[classTimes.length - 1];
