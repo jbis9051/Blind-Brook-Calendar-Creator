@@ -1,7 +1,7 @@
 import {InputClass} from "./InputClass";
 import {SchoolType} from "..";
 
-interface ScheduleInput {
+export interface ScheduleInput {
     school: SchoolType
     classes: InputClass[]
 }
