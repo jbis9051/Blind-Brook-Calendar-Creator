@@ -1,16 +1,16 @@
 import { 
     Schedule, 
     ScheduleInput, 
-    Class, Period, 
+    Class, 
+    Period, 
     InClassSchedule, 
-    InputClass, 
     InClassTimes, 
     SchoolType, 
     SpecialPeriod 
 } from '@bb-scheduler/common';
  
 export const inputToSchedule = (schedule: ScheduleInput): Schedule => {
-    let scheduleObject: Schedule = {
+    const scheduleObject: Schedule = {
         A: [],
         B: [],
         C: [],
@@ -24,18 +24,17 @@ export const inputToSchedule = (schedule: ScheduleInput): Schedule => {
     const highSchool = schedule.school === SchoolType.HIGH_SCHOOL;
     const middleSchool = schedule.school === SchoolType.MIDDLE_SCHOOL;
     const days = Object.values(InClassSchedule);
-    
+    const classTimes = InClassTimes[school as SchoolType];
+
     days.forEach((day, index) => {
         const letterDay = Object.keys(InClassSchedule)[index];
         day.forEach((dayPeriod, periodIndex) => {
-            const classForAssignedPeriod = (classes as InputClass[]).find(schoolClass => {
+            const classForAssignedPeriod = classes.find(schoolClass => {
                 const matchedLetterDay = schoolClass.letterDays.includes(letterDay);
                 return schoolClass.period === dayPeriod && matchedLetterDay;
-            }) as InputClass;
+            });
 
-            const periodTimes = InClassTimes[school as SchoolType].find(periodAndTimes => periodAndTimes.period === dayPeriod);
-            const timeFrom = periodTimes?.from as string;
-            const timeTo = periodTimes?.to as string;
+            const { to: timeFrom, from: timeTo } = classTimes[periodIndex];
             
             if (classForAssignedPeriod) {
                 const id = classes.indexOf(classForAssignedPeriod);
@@ -55,7 +54,6 @@ export const inputToSchedule = (schedule: ScheduleInput): Schedule => {
             } else {
                 const freeObject: Period = {
                     period: SpecialPeriod.FREE,
-                    name: "Free",
                     time: {
                         from: timeFrom,
                         to: timeTo
@@ -66,29 +64,14 @@ export const inputToSchedule = (schedule: ScheduleInput): Schedule => {
 
             const lunchHighSchool = highSchool && periodIndex === 2;
             const lunchMiddleSchool = middleSchool && periodIndex === 3;
-            const extraHelp = periodIndex === 5;
 
             if (lunchHighSchool || lunchMiddleSchool) {
-                const lunchTime = highSchool ? { from: "10:38", to: "11:31" } : { from: "11:34", to: "12:27" }
-                const lunchObject: Period = {
-                    period: SpecialPeriod.LUNCH,
-                    name: "Lunch",
-                    time: lunchTime,
-                }
-                scheduleObject[letterDay as keyof Schedule].push(lunchObject);
-            }
-            if (extraHelp) {
-                const helpObject: Period = {
-                    period: SpecialPeriod.EXTRA_HELP,
-                    name: "Help",
-                    time: {
-                        from: "2:22",
-                        to: "2:40"
-                    }
-                }
-                scheduleObject[letterDay as keyof Schedule].push(helpObject);
+                const { period, from, to } = classTimes[periodIndex + 1];
+                scheduleObject[letterDay as keyof Schedule].push({ period, time: { from, to }});
             }
         });
-    })
+        const { period, from, to } = classTimes[classTimes.length - 1];
+        scheduleObject[letterDay as keyof Schedule].push({ period, time: { from, to }});
+    });
     return scheduleObject
 }

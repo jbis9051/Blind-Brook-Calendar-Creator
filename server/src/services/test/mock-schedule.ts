@@ -1,6 +1,6 @@
-import { ScheduleInput, SpecialPeriod } from '@bb-scheduler/common';
+import { ScheduleInput, SchoolType } from '@bb-scheduler/common';
 export const mockSchedule: ScheduleInput = {
-    school: 0,
+    school: SchoolType.HIGH_SCHOOL,
     classes: [
        {
           name: "Honors Algebra II/Trigonometry",
