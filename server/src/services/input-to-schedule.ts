@@ -3,7 +3,6 @@ import {
     ScheduleInput, 
     InClassSchedule, 
     InClassTimes, 
-    SchoolType, 
     SpecialPeriod 
 } from '@bb-scheduler/common';
  
@@ -20,15 +19,17 @@ export const inputToSchedule = (schedule: ScheduleInput): Schedule => {
     };
     const { school, classes } = schedule;
     const days = Object.values(InClassSchedule);
-    const classTimes = InClassTimes[school as SchoolType];
+    const classTimes = InClassTimes[school];
 
     days.forEach((day, index) => {
         const letterDay = Object.keys(InClassSchedule)[index];
         const classesForLetterDay = [];
         let pastLunch = false;
         day.forEach((dayPeriod, periodIndex) => {
-            let { from, to } = classTimes[periodIndex];
-            let time = { from, to };
+            let time = {
+               from: classTimes[periodIndex].from,
+               to: classTimes[periodIndex].to
+            };
 
             if (classTimes[periodIndex].period === SpecialPeriod.LUNCH) {
                 const period = classTimes[periodIndex].period;
@@ -37,19 +38,28 @@ export const inputToSchedule = (schedule: ScheduleInput): Schedule => {
             }
 
             if (pastLunch) {
-                ({ from, to } = classTimes[periodIndex + 1]);
-                (time = { from, to });
+                 time = {
+                    // to account for lunch, we need to offset the index by one
+                    from: classTimes[periodIndex + 1].from,
+                    to: classTimes[periodIndex + 1].to
+                 };
             }
 
             const classForAssignedPeriod = classes.find(schoolClass => {
-                const matchedLetterDay = schoolClass.letterDays.includes(letterDay);
-                return schoolClass.period === dayPeriod && matchedLetterDay;
+                return schoolClass.period === dayPeriod && schoolClass.letterDays.includes(letterDay);;
             });
             
             if (classForAssignedPeriod) {
-                const id = classes.indexOf(classForAssignedPeriod);
-                const { period, name, room, teacher } = classForAssignedPeriod;
-                classesForLetterDay.push({ period, name, room, teacher, id, time });
+                if (classForAssignedPeriod) {
+                    classesForLetterDay.push({
+                         period: classForAssignedPeriod.period,
+                         name: classForAssignedPeriod.name,
+                         room: classForAssignedPeriod.room,
+                         teacher: classForAssignedPeriod.teacher,
+                         id: classes.indexOf(classForAssignedPeriod),
+                         time 
+                    });
+                }
             } else {
                 classesForLetterDay.push({
                     period: SpecialPeriod.FREE,
@@ -57,9 +67,14 @@ export const inputToSchedule = (schedule: ScheduleInput): Schedule => {
                 });
             }
         });
-        //Activity Period
-        const { period, from, to } = classTimes[classTimes.length - 1];
-        classesForLetterDay.push({ period, time: { from, to }});
+        // Activity Period
+        classesForLetterDay.push({ 
+            period: classTimes[classTimes.length - 1].period, 
+            time: { 
+                from: classTimes[classTimes.length - 1].from, 
+                to: classTimes[classTimes.length - 1].to 
+            }
+        });
 
         scheduleObject[letterDay as keyof Schedule] = classesForLetterDay;
     });
