@@ -1,8 +1,6 @@
 import { 
     Schedule, 
     ScheduleInput, 
-    Class, 
-    Period, 
     InClassSchedule, 
     InClassTimes, 
     SchoolType, 
@@ -28,38 +26,37 @@ export const inputToSchedule = (schedule: ScheduleInput): Schedule => {
 
     days.forEach((day, index) => {
         const letterDay = Object.keys(InClassSchedule)[index];
+        const classesForLetterDay = [];
         day.forEach((dayPeriod, periodIndex) => {
+            const { from, to } = classTimes[periodIndex];
+            const time = { from, to };
+
+            if (classTimes[periodIndex].period === SpecialPeriod.LUNCH) {
+                const period = classTimes[periodIndex];
+                classesForLetterDay.push({period, time});
+            }
+
             const classForAssignedPeriod = classes.find(schoolClass => {
                 const matchedLetterDay = schoolClass.letterDays.includes(letterDay);
                 return schoolClass.period === dayPeriod && matchedLetterDay;
             });
-
-            const { from, to } = classTimes[periodIndex];
-            let classToAdd: Period | Class;
-
+            
             if (classForAssignedPeriod) {
                 const id = classes.indexOf(classForAssignedPeriod);
                 const { period, name, room, teacher } = classForAssignedPeriod;
-                classToAdd = { period, name, room, teacher, id, time: { from, to } };
+                classesForLetterDay.push({ period, name, room, teacher, id, time });
             } else {
-                classToAdd = {
+                classesForLetterDay.push({
                     period: SpecialPeriod.FREE,
-                    time: { from, to }
-                }
-            }
-
-            scheduleObject[letterDay as keyof Schedule].push(classToAdd);
-
-            const lunchHighSchool = highSchool && periodIndex === 2;
-            const lunchMiddleSchool = middleSchool && periodIndex === 3;
-
-            if (lunchHighSchool || lunchMiddleSchool) {
-                const { period, from, to } = classTimes[periodIndex + 1];
-                scheduleObject[letterDay as keyof Schedule].push({period, time: { from, to }});
+                    time
+                });
             }
         });
+        //Activity Period
         const { period, from, to } = classTimes[classTimes.length - 1];
-        scheduleObject[letterDay as keyof Schedule].push({ period, time: { from, to }});
+        classesForLetterDay.push({ period, time: { from, to }});
+
+        scheduleObject[letterDay as keyof Schedule] = classesForLetterDay;
     });
     return scheduleObject
 }
