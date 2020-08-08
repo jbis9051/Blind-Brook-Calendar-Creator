@@ -10,23 +10,23 @@ import {
  
 export const inputToSchedule = (schedule: ScheduleInput, scheduleStructure: ConfigurationSchedule, scheduleTimes: ConfigurationTimes): Schedule => {
     const { school, classes } = schedule;
-    const classTimes = scheduleTimes[school];
 
-    return Object.fromEntries(Object.entries(scheduleStructure).map(([letter]) => {
+    return Object.fromEntries(Object.entries(scheduleStructure).map(([letter, block]) => {
         const outputClasses: Period[] = [];
-        classTimes.forEach((periodObject, periodIndex) => {
-            let time = {
-                from: classTimes[periodIndex].from,
-                to: classTimes[periodIndex].to
+        scheduleTimes[schedule.school].forEach((periodObject, periodIndex) => {
+            const time = {
+                from: periodObject.from,
+                to: periodObject.to
             };
             if (periodObject.period === SpecialPeriod.LUNCH || periodObject.period  ===  SpecialPeriod.EXTRA_HELP) {
                 outputClasses.push({
-                    period: classTimes[periodIndex].period, 
+                    period: scheduleTimes[school][periodIndex].period, 
                     time
                 });
             } else {
-                const classForAssignedPeriod = classes.find(schoolClass => {
-                    return schoolClass.period === scheduleStructure[letter][(periodObject.period as number) - 1] && schoolClass.letterDays.includes(letter);
+                const classForAssignedPeriod = schedule.classes.find(schoolClass => {
+                    // In order to get the index of the periods, we would need to subtract 1 from the block number
+                    return schoolClass.period === block[(periodObject.period as number) - 1] && schoolClass.letterDays.includes(letter);
                 });
                 if (classForAssignedPeriod) {
                     outputClasses.push({
