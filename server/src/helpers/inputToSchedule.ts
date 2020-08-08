@@ -2,24 +2,23 @@ import {
     Schedule, 
     SchoolType,
     ConfigurationSchedule,
-    ConfigurationTimes,
     Period,
-    InputClass,
     Class,
+    InputClass,
     SpecialPeriod 
 } from '@bb-scheduler/common';
  
-export function inputToSchedule (school: SchoolType, classes: InputClass[], scheduleStructure: ConfigurationSchedule, scheduleTimes: ConfigurationTimes): Schedule {
-    return Object.fromEntries(Object.entries(scheduleStructure).map(([letter, block]) => {
+export function inputToSchedule (school: SchoolType, classes: InputClass[], schedule: ConfigurationSchedule): Schedule {
+    return Object.fromEntries(Object.entries(schedule[school].schedule).map(([letter, block]) => {
         const outputClasses: Period[] = [];
-        scheduleTimes[school].forEach((periodObject, periodIndex) => {
+        schedule[school].times.forEach((periodObject, periodIndex) => {
             const time = {
                 from: periodObject.from,
                 to: periodObject.to
             };
             if (periodObject.period === SpecialPeriod.LUNCH || periodObject.period  ===  SpecialPeriod.EXTRA_HELP) {
                 outputClasses.push({
-                    period: scheduleTimes[school][periodIndex].period, 
+                    period: schedule[school].times[periodIndex].period, 
                     time
                 });
             } else {
