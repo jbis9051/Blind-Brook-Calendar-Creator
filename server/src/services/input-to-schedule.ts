@@ -12,7 +12,7 @@ export const inputToSchedule = (schedule: ScheduleInput, scheduleStructure: Conf
     const { school, classes } = schedule;
     const classTimes = scheduleTimes[school];
 
-    return Object.fromEntries(Object.entries(scheduleStructure).map((letter, index) => {
+    return Object.fromEntries(Object.entries(scheduleStructure).map(([letter], index) => {
         const outputClasses: Period[] = [];
         const letterDay = Object.keys(scheduleStructure)[index];
         classTimes.forEach((periodObject, periodIndex) => {
