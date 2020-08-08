@@ -1,19 +1,20 @@
 import { 
     Schedule, 
     ScheduleInput, 
-    InClassSchedule, 
+    ConfigurationSchedule,
+    ConfigurationTimes,
     Period,
     Class,
-    InClassTimes, 
     SpecialPeriod 
 } from '@bb-scheduler/common';
  
-export const inputToSchedule = (schedule: ScheduleInput): Schedule => {
+export const inputToSchedule = (schedule: ScheduleInput, scheduleStructure: ConfigurationSchedule, scheduleTimes: ConfigurationTimes): Schedule => {
     const { school, classes } = schedule;
-    const classTimes = InClassTimes[school];
-    return Object.fromEntries(Object.entries(InClassSchedule).map(([letter, blocks], index) => {
+    const classTimes = scheduleTimes[school];
+
+    return Object.fromEntries(Object.entries(scheduleStructure).map(([letter, blocks], index) => {
         const outputClasses: Period[] = [];
-        const letterDay = Object.keys(InClassSchedule)[index];
+        const letterDay = Object.keys(scheduleStructure)[index];
         let pastLunch = false;
         blocks.forEach((dayPeriod, periodIndex) => {
             let time = {

@@ -1,7 +1,8 @@
 import {SchoolType} from "..";
 import {SpecialPeriod} from "../enums/SpecialPeriod";
+import {ConfigurationTimes} from "../interfaces/ConfigurationTimes";
 
-export const InClassTimes = {
+export const InClassTimes: ConfigurationTimes = {
     [SchoolType.HIGH_SCHOOL]: [
         {
             period: 1,

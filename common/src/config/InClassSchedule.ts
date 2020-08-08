@@ -1,4 +1,6 @@
-export const InClassSchedule = {
+import { ConfigurationSchedule } from '../interfaces/ConfigurationSchedule';
+
+export const InClassSchedule: ConfigurationSchedule = {
     A: [1, 2, 3, 4, 5, 6],
     B: [3, 4, 5, 6, 7, 8],
     C: [5, 6, 7, 8, 1, 2],

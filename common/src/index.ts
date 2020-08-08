@@ -8,3 +8,5 @@ export * from './interfaces/InputClass';
 export * from './interfaces/Period';
 export * from './interfaces/Schedule';
 export * from './interfaces/ScheduleInput';
+export *  from './interfaces/ConfigurationSchedule';
+export * from './interfaces/ConfigurationTimes';
