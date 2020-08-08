@@ -12,9 +12,8 @@ export const inputToSchedule = (schedule: ScheduleInput, scheduleStructure: Conf
     const { school, classes } = schedule;
     const classTimes = scheduleTimes[school];
 
-    return Object.fromEntries(Object.entries(scheduleStructure).map(([letter], index) => {
+    return Object.fromEntries(Object.entries(scheduleStructure).map(([letter]) => {
         const outputClasses: Period[] = [];
-        const letterDay = Object.keys(scheduleStructure)[index];
         classTimes.forEach((periodObject, periodIndex) => {
             let time = {
                 from: classTimes[periodIndex].from,
@@ -27,7 +26,7 @@ export const inputToSchedule = (schedule: ScheduleInput, scheduleStructure: Conf
                 });
             } else {
                 const classForAssignedPeriod = classes.find(schoolClass => {
-                    return schoolClass.period === periodObject.period && schoolClass.letterDays.includes(letterDay);;
+                    return schoolClass.period === scheduleStructure[letter][(periodObject.period as number) - 1] && schoolClass.letterDays.includes(letter);
                 });
                 if (classForAssignedPeriod) {
                     outputClasses.push({
