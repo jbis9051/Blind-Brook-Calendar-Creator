@@ -1,19 +1,18 @@
 import { 
     Schedule, 
-    ScheduleInput, 
+    SchoolType,
     ConfigurationSchedule,
     ConfigurationTimes,
     Period,
+    InputClass,
     Class,
     SpecialPeriod 
 } from '@bb-scheduler/common';
  
-export const inputToSchedule = (schedule: ScheduleInput, scheduleStructure: ConfigurationSchedule, scheduleTimes: ConfigurationTimes): Schedule => {
-    const { school, classes } = schedule;
-
+export function inputToSchedule (school: SchoolType, classes: InputClass[], scheduleStructure: ConfigurationSchedule, scheduleTimes: ConfigurationTimes): Schedule {
     return Object.fromEntries(Object.entries(scheduleStructure).map(([letter, block]) => {
         const outputClasses: Period[] = [];
-        scheduleTimes[schedule.school].forEach((periodObject, periodIndex) => {
+        scheduleTimes[school].forEach((periodObject, periodIndex) => {
             const time = {
                 from: periodObject.from,
                 to: periodObject.to
@@ -24,8 +23,7 @@ export const inputToSchedule = (schedule: ScheduleInput, scheduleStructure: Conf
                     time
                 });
             } else {
-                const classForAssignedPeriod = schedule.classes.find(schoolClass => {
-                    // In order to get the index of the periods, we would need to subtract 1 from the block number
+                const classForAssignedPeriod = classes.find(schoolClass => {
                     return schoolClass.period === block[(periodObject.period as number) - 1] && schoolClass.letterDays.includes(letter);
                 });
                 if (classForAssignedPeriod) {
