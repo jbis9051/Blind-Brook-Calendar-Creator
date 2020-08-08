@@ -3,6 +3,8 @@ export * from './enums/SpecialPeriod';
 
 export * from './config/InClassSchedule';
 export * from './config/InClassTimes';
+export * from './config/RemoteSchedule';
+export * from './config/RemoteTimes';
 
 export * from './interfaces/InputClass';
 export * from './interfaces/Period';

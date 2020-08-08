@@ -57,13 +57,16 @@ export const inputToSchedule = (schedule: ScheduleInput, scheduleStructure: Conf
             }
         });
         // Activity Period
-        outputClasses.push({ 
-            period: classTimes[classTimes.length - 1].period, 
-            time: { 
-                from: classTimes[classTimes.length - 1].from, 
-                to: classTimes[classTimes.length - 1].to 
-            }
-        });
+        const extraHelpPeriod = classTimes.find(periodObject => periodObject.period === SpecialPeriod.EXTRA_HELP);
+        if (extraHelpPeriod) {
+            outputClasses.push({ 
+                period: classTimes[classTimes.length - 1].period, 
+                time: { 
+                    from: classTimes[classTimes.length - 1].from, 
+                    to: classTimes[classTimes.length - 1].to 
+                }
+            });
+        }
         return [letter, outputClasses];
     })) as Schedule;
 }
