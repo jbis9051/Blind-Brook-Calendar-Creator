@@ -1,7 +1,7 @@
-import {SpecialPeriod} from "../enums/SpecialPeriod";
+import {SpecialPeriod} from "..";
 
 export interface Period {
-    period: number | SpecialPeriod,
+    block: number | SpecialPeriod,
     time: {
         from: string,
         to: string

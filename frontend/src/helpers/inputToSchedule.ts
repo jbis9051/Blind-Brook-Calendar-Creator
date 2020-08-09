@@ -1,13 +1,13 @@
-import { 
-    Schedule, 
+import {
+    Schedule,
     SchoolType,
     ConfigurationSchedule,
     Period,
     Class,
     InputClass,
-    SpecialPeriod 
+    SpecialPeriod
 } from '@bb-scheduler/common';
- 
+
 export function inputToSchedule (school: SchoolType, classes: InputClass[], schedule: ConfigurationSchedule): Schedule {
     return Object.fromEntries(Object.entries(schedule[school].schedule).map(([letter, block]) => {
         const outputClasses: Period[] = [];
@@ -16,27 +16,27 @@ export function inputToSchedule (school: SchoolType, classes: InputClass[], sche
                 from: periodObject.from,
                 to: periodObject.to
             };
-            if (periodObject.period === SpecialPeriod.LUNCH || periodObject.period  ===  SpecialPeriod.EXTRA_HELP) {
+            if (periodObject.block === SpecialPeriod.LUNCH || periodObject.block  ===  SpecialPeriod.EXTRA_HELP) {
                 outputClasses.push({
-                    period: schedule[school].times[periodIndex].period, 
+                    block: schedule[school].times[periodIndex].block,
                     time
                 });
             } else {
                 const classForAssignedPeriod = classes.find(schoolClass => {
-                    return schoolClass.period === block[(periodObject.period as number) - 1] && schoolClass.letterDays.includes(letter);
+                    return schoolClass.period === block[(periodObject.block as number) - 1] && schoolClass.letterDays.includes(letter);
                 });
                 if (classForAssignedPeriod) {
                     outputClasses.push({
-                        period: classForAssignedPeriod.period,
+                        block: classForAssignedPeriod.period,
                         name: classForAssignedPeriod.name,
                         room: classForAssignedPeriod.room,
                         teacher: classForAssignedPeriod.teacher,
                         id: classes.indexOf(classForAssignedPeriod),
-                        time 
+                        time
                     } as Class);
                 } else {
                     outputClasses.push({
-                        period: SpecialPeriod.FREE,
+                        block: SpecialPeriod.FREE,
                         time
                     });
                 }

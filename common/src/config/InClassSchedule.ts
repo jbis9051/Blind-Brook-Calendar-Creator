@@ -17,42 +17,42 @@ export const InClassSchedule: ConfigurationSchedule = {
         schedule: scheduleStructure,
         times:[
             {
-                period: 1,
+                block: 1,
                 from: "07:50",
                 to: "08:43"
             },
             {
-                period: 2,
+                block: 2,
                 from: "08:46",
                 to: "09:39"
             },
             {
-                period: 3,
+                block: 3,
                 from: "09:42",
                 to: "10:35"
             },
             {
-                period: SpecialPeriod.LUNCH,
+                block: SpecialPeriod.LUNCH,
                 from: "10:38",
                 to: "11:31"
             },
             {
-                period: 4,
+                block: 4,
                 from: "11:34",
                 to: "12:27"
             },
             {
-                period: 5,
+                block: 5,
                 from: "12:30",
                 to: "13:23"
             },
             {
-                period: 6,
+                block: 6,
                 from: "13:26",
                 to: "14:19"
             },
             {
-                period: SpecialPeriod.EXTRA_HELP,
+                block: SpecialPeriod.EXTRA_HELP,
                 from: "14:22",
                 to: "14:40"
             }
@@ -62,42 +62,42 @@ export const InClassSchedule: ConfigurationSchedule = {
         schedule: scheduleStructure,
         times: [
             {
-                period: 1,
+                block: 1,
                 from: "07:50",
                 to: "08:43"
             },
             {
-                period: 2,
+                block: 2,
                 from: "08:46",
                 to: "09:39"
             },
             {
-                period: 3,
+                block: 3,
                 from: "09:42",
                 to: "10:35"
             },
             {
-                period: 4,
+                block: 4,
                 from: "10:38",
                 to: "11:31"
             },
             {
-                period: SpecialPeriod.LUNCH,
+                block: SpecialPeriod.LUNCH,
                 from: "11:34",
                 to: "12:27"
             },
             {
-                period: 5,
+                block: 5,
                 from: "12:30",
                 to: "13:23"
             },
             {
-                period: 6,
+                block: 6,
                 from: "13:26",
                 to: "14:19"
             },
             {
-                period: SpecialPeriod.EXTRA_HELP,
+                block: SpecialPeriod.EXTRA_HELP,
                 from: "14:22",
                 to: "14:40"
             }

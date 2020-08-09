@@ -2,19 +2,18 @@
     display: inline-block;
     box-sizing: border-box;
     text-align: center;
-    margin: 10px 10px 0;
+    margin: 0 20px;
 }
 
 .nav-item > a, .nav-item > span {
     display: block;
-    padding: 10px 40px;
-    background: #b00004;
     text-decoration: none;
-    color: white;
-    font-size: 18px;
-    font-weight: 500;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 10px;
 }
 
-.nav-item > a:hover, .nav-item > span:hover {
-    background: #630004;
+.nav-item:hover {
+    color: #6c6c6c;
 }

@@ -1,14 +1,14 @@
 .footer-container {
-    padding: 15px 10px;
+    padding: 5px 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #b00004;
     text-align: center;
-    color: white;
+    color: #a4a4a4;
+    font-size: 14px;
 }
 .copyright a {
-    color: white;
+    color: inherit;
     text-decoration: none;
 }
 .copyright a:hover {

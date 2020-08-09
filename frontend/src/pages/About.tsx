@@ -3,7 +3,7 @@ import React from 'react';
 export const About: React.FunctionComponent = ({}) => {
     return (
         <div style={{fontSize: "18px"}} className={"about-wrapper"}>
-            <h1>About</h1>
+            <h1 className={"title"}>About</h1>
             <p>Blind Brook Schedule Creator was created to help students of Blind Brook with their schedule. Now it
                 also supports teachers schedules. The website generates iCal files and a printable schedule in
                 accordance with the letter day schedule and bell times.</p>

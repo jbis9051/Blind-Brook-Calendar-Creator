@@ -1,4 +1,4 @@
-import {InClassSchedule} from  '../config/InClassSchedule';
+import {InClassSchedule} from '..';
 import {Period} from "./Period";
 
 export type Schedule = {

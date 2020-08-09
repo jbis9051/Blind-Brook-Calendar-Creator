@@ -1,32 +1,8 @@
-.import-container {
-    display: flex;
-}
-
-.import-container > * {
-    flex: 1;
-}
-
-.import-input {
-    font-size: 18px;
-    padding: 10px;
-    border-radius: 0.25rem;
-    border: 1px solid #c4c4c4;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    width: 100%;
-    display: block;
-    box-sizing: border-box;
-    resize: none;
-    height: 200px;
-    font-family: monospace;
-}
-
-
 .school-selector {
     width: 100%;
     max-width: 800px;
     margin: 15px auto;
-    border: 1px #ff4a3d solid;
+    border: 1px #ff2b3e solid;
     border-radius: 60px;
     display: flex;
     overflow: hidden;
@@ -39,10 +15,10 @@
     flex: 1;
     padding: 8px;
     text-align: center;
-    border-right: 1px solid #ff4a3d;
+    border-right: 1px solid #ff2b3e;
     position: relative;
     font-weight: 400;
-    color: #ff4a3d;
+    color: #ff2b3e;
     background: inherit;
     transition: background-color 100ms, color 100ms;
 }
@@ -53,11 +29,49 @@
 
 .school-switch.selected {
     font-weight: 500;
-    background: #ff4a3d;
+    background: #ff2b3e;
     color: white;
 }
 
-.help-button {
-    margin: 15px 10px;
-    padding: 6px 30px;
+
+
+table {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+    border: 3px solid black;
+    font-size: 30px;
+    min-width: 700px;
+}
+.time {
+    font-size: 20px;
+}
+.lunch {
+    background: #c5dbf0;
+}
+.class {
+    font-size: 13px;
+    overflow: hidden;
+}
+
+.class span {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+.class span[hidden] {
+    display: none;
+}
+table, th, td {
+    text-align: center;
+    text-overflow: ellipsis;
+    border: 1px solid black;
+    overflow: hidden;
+}
+th {
+    width: 12%;
+}
+th:first-child {
+    width: 15%;
 }

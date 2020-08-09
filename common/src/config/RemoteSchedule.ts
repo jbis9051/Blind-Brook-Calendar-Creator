@@ -17,37 +17,37 @@ export const RemoteSchedule: ConfigurationSchedule = {
         schedule: scheduleStructure,
         times:[
             {
-                period: 1,
+                block: 1,
                 from: "08:00",
                 to: "08:50"
             },
             {
-                period: 2,
+                block: 2,
                 from: "09:00",
                 to: "09:50"
             },
             {
-                period: 3,
+                block: 3,
                 from: "10:00",
                 to: "10:50"
             },
             {
-                period: SpecialPeriod.LUNCH,
+                block: SpecialPeriod.LUNCH,
                 from: "11:00",
                 to: "11:50"
             },
             {
-                period: 4,
+                block: 4,
                 from: "12:00",
                 to: "12:50"
             },
             {
-                period: 5,
+                block: 5,
                 from: "1:00",
                 to: "1:50"
             },
             {
-                period: 6,
+                block: 6,
                 from: "2:00",
                 to: "2:50"
             }
@@ -57,37 +57,37 @@ export const RemoteSchedule: ConfigurationSchedule = {
         schedule: scheduleStructure,
         times: [
             {
-                period: 1,
+                block: 1,
                 from: "08:00",
                 to: "08:50"
             },
             {
-                period: 2,
+                block: 2,
                 from: "09:00",
                 to: "09:50"
             },
             {
-                period: 3,
+                block: 3,
                 from: "10:00",
                 to: "10:50"
             },
             {
-                period: 4,
+                block: 4,
                 from: "11:00",
                 to: "11:50"
             },
             {
-                period: SpecialPeriod.LUNCH,
+                block: SpecialPeriod.LUNCH,
                 from: "12:00",
                 to: "12:50"
             },
             {
-                period: 5,
+                block: 5,
                 from: "1:00",
                 to: "1:50"
             },
             {
-                period: 6,
+                block: 6,
                 from: "2:00",
                 to: "2:50"
             }
