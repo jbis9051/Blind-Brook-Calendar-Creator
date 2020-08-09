@@ -1,7 +1,7 @@
-import { ConfigurationSchedule } from '../interfaces/ConfigurationSchedule';
-import { SchoolType, SpecialPeriod } from '../enums/..';
+import { ConfigurationSchedule } from '..';
+import { SchoolType, SpecialPeriod } from '..';
 
- const scheduleSturcture = {
+ const scheduleStructure = {
     A: [1, 2, 3, 4, 5, 6],
     B: [3, 4, 5, 6, 7, 8],
     C: [5, 6, 7, 8, 1, 2],
@@ -14,7 +14,7 @@ import { SchoolType, SpecialPeriod } from '../enums/..';
 
 export const RemoteSchedule: ConfigurationSchedule = {
     [SchoolType.HIGH_SCHOOL]: {
-        schedule: scheduleSturcture,
+        schedule: scheduleStructure,
         times:[
             {
                 period: 1,
@@ -54,7 +54,7 @@ export const RemoteSchedule: ConfigurationSchedule = {
         ]
     },
     [SchoolType.MIDDLE_SCHOOL]: {
-        schedule: scheduleSturcture,
+        schedule: scheduleStructure,
         times: [
             {
                 period: 1,

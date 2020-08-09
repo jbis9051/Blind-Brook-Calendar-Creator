@@ -1,5 +1,5 @@
-import { ConfigurationSchedule } from '../interfaces/ConfigurationSchedule';
-import { SchoolType, SpecialPeriod } from '../enums/..';
+import { ConfigurationSchedule } from '..';
+import { SchoolType, SpecialPeriod } from '..';
 
  const scheduleStructure = {
     A: [1, 2, 3, 4, 5, 6],
