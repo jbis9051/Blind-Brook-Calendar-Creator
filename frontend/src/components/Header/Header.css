@@ -2,9 +2,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 10px;
+    padding: 10px;
     text-align: center;
     box-sizing: content-box;
+    background: #1495e8;
+    color: #fefefe;
 }
 
 .header-container a {
@@ -13,9 +15,9 @@
 }
 
 .site-name {
-    font-size: 20px;
-    margin: 0;
-    color: #14A2FF;
+    font-size: 22px;
+    font-weight: 800;
+    margin: 0 0 0 10px;
 }
 
 .year-version {

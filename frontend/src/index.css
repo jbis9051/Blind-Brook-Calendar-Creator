@@ -9,6 +9,7 @@ html, body {
 
 body {
     font-family: 'Inter', sans-serif;
+    background: rgba(250, 250, 250, 0.94);
 }
 
 #root {

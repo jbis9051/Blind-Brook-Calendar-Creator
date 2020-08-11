@@ -1,0 +1,45 @@
+table {
+    table-layout: fixed;
+    width: 100%;
+    border-spacing: 0;
+    font-size: 30px;
+    min-width: 700px;
+    border-collapse: collapse;
+    background: white;
+}
+
+.time {
+    font-size: 20px;
+}
+.lunch {
+    background: #c5dbf0;
+}
+.class {
+    font-size: 13px;
+    overflow: hidden;
+}
+
+.class span {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+.class span[hidden] {
+    display: none;
+}
+
+th, td {
+    text-align: center;
+    text-overflow: ellipsis;
+    border: 1px solid #9d9d9d;
+    overflow: hidden;
+}
+
+th {
+    width: 12%;
+}
+
+th:first-child {
+    width: 15%;
+}
