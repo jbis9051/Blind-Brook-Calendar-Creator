@@ -6,7 +6,7 @@ import {
     Switch,
     Route,
 } from "react-router-dom";
-import {Home} from "./pages/Home";
+import {Create} from "./pages/Create";
 import {About} from "./pages/About";
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
             <Layout>
                 <Switch>
                     <Route exact path={"/"}>
-                        <Home/>
+                        <Create/>
                     </Route>
                     <Route exact path={"/about"}>
                         <About/>

@@ -41,14 +41,15 @@ export const ScheduleTable: React.FunctionComponent<ScheduleTableProps> = ({inpu
         body.push(
             <tr key={time.from}>
                 <td className={"time"}>{timeFormat(time.from)} - {timeFormat(time.to)}</td>
-                {periods.map((period,index) => {
-                    if(period.block === SpecialPeriod.LUNCH || period.block === SpecialPeriod.EXTRA_HELP){
-                        if(index !== 0){
+                {periods.map((period, index) => {
+                    if (period.block === SpecialPeriod.LUNCH || period.block === SpecialPeriod.EXTRA_HELP) {
+                        if (index !== 0) {
                             return null;
                         }
-                        return <td key={index} colSpan={Object.keys(scheduleOutput).length}>{period.block === SpecialPeriod.LUNCH ? "LUNCH" : "EXTRA HELP"}</td>
+                        return <td key={index}
+                                   colSpan={Object.keys(scheduleOutput).length}>{period.block === SpecialPeriod.LUNCH ? "LUNCH" : "EXTRA HELP"}</td>
                     }
-                    if(period.block === SpecialPeriod.FREE){
+                    if (period.block === SpecialPeriod.FREE) {
                         return <td key={index}>Free</td>
                     }
                 })}
@@ -57,18 +58,21 @@ export const ScheduleTable: React.FunctionComponent<ScheduleTableProps> = ({inpu
     });
 
     return (
-        <table>
-            <thead>
-            <tr>
-                <th/> {/*this is to accommodate the times*/}
-                {Object.keys(scheduleOutput).map(letter =>
-                    <th key={letter} className={"letter"}>{letter}</th>
-                )}
-            </tr>
-            </thead>
-            <tbody>
-            {body}
-            </tbody>
-        </table>
+        <div className={"table-wrapper"}>
+            <table>
+                <thead>
+                <tr>
+                    <th/>
+                    {/*this is to accommodate the times*/}
+                    {Object.keys(scheduleOutput).map(letter =>
+                        <th key={letter} className={"letter"}>{letter}</th>
+                    )}
+                </tr>
+                </thead>
+                <tbody>
+                {body}
+                </tbody>
+            </table>
+        </div>
     )
 }

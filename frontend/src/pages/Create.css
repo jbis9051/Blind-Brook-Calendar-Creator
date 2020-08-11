@@ -38,6 +38,13 @@
     align-items: center;
 }
 
+@media (max-width: 600px) {
+    .button-wrapper {
+        flex-direction: column;
+    }
+}
+
+
 .button {
     margin: 15px 5px;
     padding: 10px 20px;
