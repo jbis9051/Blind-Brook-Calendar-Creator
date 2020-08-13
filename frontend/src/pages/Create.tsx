@@ -5,6 +5,7 @@ import {ScheduleTable} from "../components/ScheduleTable";
 import {AddClassModal} from "../components/Modal/AddClassModal";
 import {Button} from "../components/Util/Button";
 import {ImportClassesModal} from "../components/Modal/ImportClassesModal";
+import {EditClassesModal} from "../components/Modal/EditClassesModal";
 
 export const Create: React.FunctionComponent = () => {
     const [inputClasses, setInputClasses] = useState<InputClass[]>([]);
@@ -12,11 +13,12 @@ export const Create: React.FunctionComponent = () => {
     const [schedule, setSchedule] = useState<ConfigurationSchedule>(InClassSchedule);
     const [addClassModelOpen, setAddClassModelOpen] = useState(false);
     const [importClassesModelOpen, setImportClassesModelOpen] = useState(false);
+    const [editClassesModalOpen, setEditClassesModalOpen] = useState(false);
 
     return (
         <div className={"create-wrapper"}>
             <div className={"create-button-wrapper"}>
-                <Button>Edit Classes</Button>
+                <Button  onClick={() => setEditClassesModalOpen(true)} >Edit Classes</Button>
                 <div>
                     <Button onClick={() => setImportClassesModelOpen(true)} style={{marginRight: "10px"}}>Import Classes</Button>
                     <Button onClick={() => setAddClassModelOpen(true)}>Add Class</Button>
@@ -36,6 +38,10 @@ export const Create: React.FunctionComponent = () => {
             {
                 importClassesModelOpen &&
                 <ImportClassesModal onImportClasses={(inputClasses) => setInputClasses(inputClasses)} onClose={() => setImportClassesModelOpen(false)}/>
+            }
+            {
+                editClassesModalOpen &&
+                <EditClassesModal onClear={() => setInputClasses([])} classes={inputClasses} onRemoveClass={(aClass: InputClass) => setInputClasses(inputClasses.filter(oneClass => oneClass !== aClass))} onClose={() => setEditClassesModalOpen(false)}/>
             }
         </div>
     )

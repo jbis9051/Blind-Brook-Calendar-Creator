@@ -1,11 +1,11 @@
 import React from 'react';
+import './About.css';
 
-export const About: React.FunctionComponent = ({}) => {
+export const About: React.FunctionComponent = () => {
     return (
-        <div style={{fontSize: "18px"}} className={"about-wrapper"}>
-            <h1 className={"title"}>About</h1>
-            <p>Blind Brook Schedule Creator was created to help students of Blind Brook with their schedule. Now it
-                also supports teachers schedules. The website generates iCal files and a printable schedule in
+        <div className={"about-wrapper"}>
+            <h1 className={"about-title"}>About</h1>
+            <p>Blind Brook Scheduler was created to help Blind Brook students and teacher with their schedule. BB Scheduler generates iCal files and a printable schedule in
                 accordance with the letter day schedule and bell times.</p>
             <p>Blind Brook Schedule Creator is completely open source and is on GitHub: <a
                 href="https://github.com/jbis9051/Blind-Brook-Calendar-Creator/">https://github.com/jbis9051/Blind-Brook-Calendar-Creator/</a>

@@ -91,7 +91,7 @@ export const ScheduleTable: React.FunctionComponent<ScheduleTableProps> = ({inpu
 
     return (
         <div className={"table-wrapper"}>
-            <table>
+            <table className={"schedule-table"}>
                 <thead>
                 <tr>
                     <th className={"time-label"}>In Class</th>
