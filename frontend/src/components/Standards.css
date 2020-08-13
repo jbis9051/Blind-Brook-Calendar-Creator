@@ -1,0 +1,38 @@
+.button {
+    margin: 6px 5px;
+    padding: 10px 15px;
+    background-color: #3c48cd;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.button.add {
+    background-color: #7095ff;
+}
+
+.button.bad {
+    background-color: #ff5953;
+}
+
+.std-button-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.std-button-wrapper .button {
+    width: 100%;
+}
+
+.std-button-wrapper .button:first-child, .std-button-wrapper .button:last-child {
+    margin-left: 0;
+}
+
+.title {
+    text-align: center;
+}

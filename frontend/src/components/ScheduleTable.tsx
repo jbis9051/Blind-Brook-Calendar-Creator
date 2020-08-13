@@ -46,11 +46,11 @@ export const ScheduleTable: React.FunctionComponent<ScheduleTableProps> = ({inpu
                         if (index !== 0) {
                             return null;
                         }
-                        return <td key={index}
+                        return <td key={index} className={"block long"}
                                    colSpan={Object.keys(scheduleOutput).length}>{period.block === SpecialPeriod.LUNCH ? "LUNCH" : "EXTRA HELP"}</td>
                     }
                     if (period.block === SpecialPeriod.FREE) {
-                        return <td key={index}>Free</td>
+                        return <td className={"block free"} key={index}>Free</td>
                     }
                 })}
             </tr>

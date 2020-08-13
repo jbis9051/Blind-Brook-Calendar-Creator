@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import './Create.css';
+import '../components/Standards.css';
 import {ConfigurationSchedule, InClassSchedule, InputClass, SchoolType} from "@bb-scheduler/common";
 import {ScheduleTable} from "../components/ScheduleTable";
 import {Modal} from "../components/Modal/Modal";
@@ -12,7 +13,7 @@ export const Create: React.FunctionComponent = () => {
     const [addClassModelOpen, setAddClassModelOpen] = useState(false);
 
     return (
-        <div>
+        <div className={"create-wrapper"}>
             <div className={"button-wrapper"}>
                 <button className={"button"}>Edit Classes</button>
                 <div>

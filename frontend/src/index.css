@@ -8,8 +8,8 @@ html, body {
 }
 
 body {
-    font-family: 'Inter', sans-serif;
-    background: rgba(250, 250, 250, 0.94);
+    font-family: 'Lato', sans-serif;
+    background: rgba(236, 236, 236, 0.94);
 }
 
 #root {
@@ -17,4 +17,8 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.error {
+    color: #cd4745;
 }

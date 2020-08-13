@@ -1,11 +1,16 @@
 import React from 'react';
 import './Modal.css';
 
+interface ModalProps {
+    onClose: () => void
+}
 
-export const Modal: React.FunctionComponent = ({children}) => {
+export const Modal: React.FunctionComponent<ModalProps> = ({onClose,children}) => {
     return (
-        <div className={"modal-container"}>
-            {children}
+        <div onClick={onClose} className={"modal-container"}>
+            <div onClick={event => event.stopPropagation()}>
+                {children}
+            </div>
         </div>
     );
 }

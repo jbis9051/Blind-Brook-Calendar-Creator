@@ -1,8 +1,14 @@
+.create-wrapper {
+    background: white;
+    padding: 25px;
+    border-radius: 4px;
+}
+
 .school-selector {
     width: 100%;
     max-width: 800px;
     margin: 15px auto;
-    border: 1px #14A2FF solid;
+    border: 1px #3c48cd solid;
     border-radius: 60px;
     display: flex;
     overflow: hidden;
@@ -15,10 +21,10 @@
     flex: 1;
     padding: 8px;
     text-align: center;
-    border-right: 1px solid #14A2FF;
+    border-right: 1px solid #3c48cd;
     position: relative;
     font-weight: 400;
-    color: #14A2FF;
+    color: #3c48cd;
     background: white;
     transition: background-color 100ms, color 100ms;
 }
@@ -29,7 +35,7 @@
 
 .school-switch.selected {
     font-weight: 500;
-    background: #14A2FF;
+    background: #3c48cd;
     color: white;
 }
 .button-wrapper {
@@ -42,22 +48,4 @@
     .button-wrapper {
         flex-direction: column;
     }
-}
-
-
-.button {
-    margin: 15px 5px;
-    padding: 10px 20px;
-    background-color: #14A2FF;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 17px;
-    white-space: nowrap;
-}
-
-.button.add {
-    background-color: #00b68d;
 }
