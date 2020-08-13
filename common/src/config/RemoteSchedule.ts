@@ -43,13 +43,13 @@ export const RemoteSchedule: ConfigurationSchedule = {
             },
             {
                 block: 5,
-                from: "1:00",
-                to: "1:50"
+                from: "13:00",
+                to: "13:50"
             },
             {
                 block: 6,
-                from: "2:00",
-                to: "2:50"
+                from: "14:00",
+                to: "14:50"
             }
         ]
     },
@@ -83,13 +83,13 @@ export const RemoteSchedule: ConfigurationSchedule = {
             },
             {
                 block: 5,
-                from: "1:00",
-                to: "1:50"
+                from: "13:00",
+                to: "13:50"
             },
             {
                 block: 6,
-                from: "2:00",
-                to: "2:50"
+                from: "14:00",
+                to: "14:50"
             }
         ]
     }

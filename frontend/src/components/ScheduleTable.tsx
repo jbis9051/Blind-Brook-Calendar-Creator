@@ -9,13 +9,18 @@ import {
     Schedule,
     SchoolType,
     SpecialPeriod,
+    InClassSchedule,
+    RemoteSchedule,
     Time
 } from "@bb-scheduler/common";
 
 function timeFormat(time: string) {
-    let [hour, min] = time.split(":").map(num => parseInt(num));
-    if (hour > 12) {
-        hour -= 12;
+    let [hour, min] = time.split(":");
+    const intHour = parseInt(hour);
+    if (intHour > 12) {
+        hour = (intHour - 12).toString();
+    } else {
+        hour = intHour.toString();
     }
     return `${hour}:${min}`;
 }
@@ -43,8 +48,11 @@ export const ScheduleTable: React.FunctionComponent<ScheduleTableProps> = ({inpu
         ));
     })
 
+    const otherScheduleTimes = (schedule === InClassSchedule ? RemoteSchedule : InClassSchedule)[schoolType].times;
+
     const body: React.ReactNode[] = [];
 
+    let index = 0;
     byTime.forEach((periods, time) => {
         body.push(
             <tr key={time.from}>
@@ -75,8 +83,10 @@ export const ScheduleTable: React.FunctionComponent<ScheduleTableProps> = ({inpu
                         </td>
                     )
                 })}
+                <td className={"time"}>{otherScheduleTimes[index] && timeFormat(otherScheduleTimes[index].from)} - {otherScheduleTimes[index] && timeFormat(otherScheduleTimes[index].to)}</td>
             </tr>
         )
+        index++;
     });
 
     return (
@@ -84,10 +94,11 @@ export const ScheduleTable: React.FunctionComponent<ScheduleTableProps> = ({inpu
             <table>
                 <thead>
                 <tr>
-                    <th/> {/*this is to accommodate the times*/}
+                    <th className={"time-label"}>In Class</th>
                     {Object.keys(scheduleOutput).map(letter =>
                         <th key={letter} className={"letter"}>{letter}</th>
                     )}
+                    <th className={"time-label"}>Remote</th>
                 </tr>
                 </thead>
                 <tbody>
