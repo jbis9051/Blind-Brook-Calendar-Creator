@@ -5,8 +5,6 @@
 }
 
 .school-selector {
-    width: 100%;
-    max-width: 800px;
     margin: 15px auto;
     border: 1px #3c48cd solid;
     border-radius: 60px;
@@ -38,14 +36,16 @@
     background: #3c48cd;
     color: white;
 }
-.button-wrapper {
+
+.create-button-wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 @media (max-width: 600px) {
-    .button-wrapper {
+    .create-button-wrapper {
         flex-direction: column;
+        justify-content: stretch;
     }
 }

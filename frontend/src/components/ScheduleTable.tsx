@@ -2,6 +2,7 @@ import React from 'react';
 import './ScheduleTable.css';
 import {inputToSchedule} from "../helpers/inputToSchedule";
 import {
+    Class,
     ConfigurationSchedule,
     InputClass,
     Period,
@@ -19,13 +20,20 @@ function timeFormat(time: string) {
     return `${hour}:${min}`;
 }
 
+export interface TableOptions {
+    showRoom?: boolean,
+    showTeacher?: boolean,
+    showFree?: boolean
+}
+
 interface ScheduleTableProps {
     inputClasses: InputClass[],
     schoolType: SchoolType,
-    schedule: ConfigurationSchedule
+    schedule: ConfigurationSchedule,
+    options: TableOptions
 }
 
-export const ScheduleTable: React.FunctionComponent<ScheduleTableProps> = ({inputClasses, schoolType, schedule}) => {
+export const ScheduleTable: React.FunctionComponent<ScheduleTableProps> = ({inputClasses, schoolType, schedule, options}) => {
     const scheduleOutput: Schedule = inputToSchedule(schoolType, inputClasses, schedule);
     const byTime = new Map<Time, Period[]>();
 
@@ -50,8 +58,22 @@ export const ScheduleTable: React.FunctionComponent<ScheduleTableProps> = ({inpu
                                    colSpan={Object.keys(scheduleOutput).length}>{period.block === SpecialPeriod.LUNCH ? "LUNCH" : "EXTRA HELP"}</td>
                     }
                     if (period.block === SpecialPeriod.FREE) {
-                        return <td className={"block free"} key={index}>Free</td>
+                        return options.showFree ? <td className={"block free"} key={index}>Free</td> : <td className={"block blank"}/>
                     }
+                    const aClass = period as Class;
+                    return (
+                        <td className={"block class"} key={index}>
+                            <span className={"class-name"}>{aClass.name}</span>
+                            {
+                                options.showRoom && aClass.room &&
+                                <span className={"class-room"}>{aClass.room}</span>
+                            }
+                            {
+                                options.showTeacher && aClass.teacher &&
+                                <span className={"class-teacher"}>{aClass.teacher}</span>
+                            }
+                        </td>
+                    )
                 })}
             </tr>
         )
@@ -62,8 +84,7 @@ export const ScheduleTable: React.FunctionComponent<ScheduleTableProps> = ({inpu
             <table>
                 <thead>
                 <tr>
-                    <th/>
-                    {/*this is to accommodate the times*/}
+                    <th/> {/*this is to accommodate the times*/}
                     {Object.keys(scheduleOutput).map(letter =>
                         <th key={letter} className={"letter"}>{letter}</th>
                     )}
