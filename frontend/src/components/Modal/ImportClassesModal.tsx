@@ -46,14 +46,20 @@ export const ImportClassesModal: React.FunctionComponent<ImportClassesModalProps
                 ) : (
                     <>
                         <h2 className={"import-title"}>Import Classes</h2>
-                        <textarea value={importValue} onPaste={e => importClasses(e.clipboardData.getData("Text"))}
-                                  onChange={e => setImportValue(e.target.value)} placeholder={"Paste eSchoolData"}
-                                  className={"import-input"}/>
+                        <div className={"import-input-container"}>
+                            <textarea value={importValue} onPaste={e => importClasses(e.clipboardData.getData("Text"))}
+                                      onChange={e => setImportValue(e.target.value)} placeholder={"Paste eSchoolData"}
+                                      className={"import-input"}/>
+                            {
+                                helpMe &&
+                                <video playsInline autoPlay loop muted src={"/video/tutorialow.mp4"} className={"import-tutorial"}/>
+                            }
+                        </div>
                         {errorMaker(importError)}
-                        {helpMe ?
-                            <video playsInline autoPlay loop muted src={"/video/tutorialow.mp4"} className={"import-tutorial"}/>
-                            : <Button fullWidth={true} onClick={() => setHelpMe(true)}
-                                      buttonColor={ButtonColor.ALT} type={"button"}>Help</Button>
+                        {
+                            !helpMe &&
+                            <Button fullWidth={true} onClick={() => setHelpMe(true)}
+                                    buttonColor={ButtonColor.ALT} type={"button"}>Help</Button>
                         }
                         <div className={"import-button-wrapper"}>
                             <Button fullWidth={true} style={{marginRight: "10px"}} onClick={onClose}
