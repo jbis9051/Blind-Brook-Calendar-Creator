@@ -13,7 +13,8 @@ interface ImportClassesModalProps {
 export const ImportClassesModal: React.FunctionComponent<ImportClassesModalProps> = ({onImportClasses, onClose}) => {
     const [importValue, setImportValue] = useState("");
     const [importError, setImportError] = useState<string | undefined>();
-    const [isDone, setIsDone] = useState<boolean>(false);
+    const [isDone, setIsDone] = useState(false);
+    const [helpMe, setHelpMe] = useState(false);
 
     function errorMaker(val: string | undefined) {
         if (!val) {
@@ -49,6 +50,11 @@ export const ImportClassesModal: React.FunctionComponent<ImportClassesModalProps
                                   onChange={e => setImportValue(e.target.value)} placeholder={"Paste eSchoolData"}
                                   className={"import-input"}/>
                         {errorMaker(importError)}
+                        {helpMe ?
+                            <video playsInline autoPlay loop muted src={"/video/tutorialow.mp4"} className={"import-tutorial"}/>
+                            : <Button fullWidth={true} onClick={() => setHelpMe(true)}
+                                      buttonColor={ButtonColor.ALT} type={"button"}>Help</Button>
+                        }
                         <div className={"import-button-wrapper"}>
                             <Button fullWidth={true} style={{marginRight: "10px"}} onClick={onClose}
                                     buttonColor={ButtonColor.BAD} type={"button"}>Cancel</Button>
