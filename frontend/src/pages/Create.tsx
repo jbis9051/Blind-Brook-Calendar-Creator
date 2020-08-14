@@ -1,11 +1,12 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './Create.css';
-import {ConfigurationSchedule, InClassSchedule, InputClass, SchoolType} from "@bb-scheduler/common";
+import {ConfigurationSchedule, InClassSchedule, InputClass, Schedule, SchoolType} from "@bb-scheduler/common";
 import {ScheduleTable} from "../components/ScheduleTable";
 import {AddClassModal} from "../components/Modal/AddClassModal";
 import {Button} from "../components/Util/Button";
 import {ImportClassesModal} from "../components/Modal/ImportClassesModal";
 import {EditClassesModal} from "../components/Modal/EditClassesModal";
+import {inputToSchedule} from "../helpers/inputToSchedule";
 
 export const Create: React.FunctionComponent = () => {
     const [inputClasses, setInputClasses] = useState<InputClass[]>([]);
@@ -14,6 +15,23 @@ export const Create: React.FunctionComponent = () => {
     const [addClassModelOpen, setAddClassModelOpen] = useState(false);
     const [importClassesModelOpen, setImportClassesModelOpen] = useState(false);
     const [editClassesModalOpen, setEditClassesModalOpen] = useState(false);
+
+    useEffect(() => {
+        const savedInputClassesString = window.localStorage.getItem("bb-schedule-save");
+        if(!savedInputClassesString){
+            return;
+        }
+        try {
+            const savedInputClasses: {type: SchoolType, classes: InputClass[]} = JSON.parse(savedInputClassesString);
+            const scheduleOutput: Schedule = inputToSchedule(savedInputClasses.type, savedInputClasses.classes, InClassSchedule); // if it works, then we assume its good, cause im too lazy for validation
+            setInputClasses(savedInputClasses.classes)
+            setSchoolType(savedInputClasses.type);
+        } catch (e) {}
+    }, []);
+
+    useEffect(() => {
+        window.localStorage.setItem("bb-schedule-save", JSON.stringify({type: schoolType, classes: inputClasses}))
+    }, [inputClasses, schoolType]);
 
     return (
         <div className={"create-wrapper"}>

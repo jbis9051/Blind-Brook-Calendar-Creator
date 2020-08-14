@@ -8,6 +8,7 @@
     display: inline-block;
     font-size: 14px;
     white-space: nowrap;
+    margin: 5px 0;
 }
 
 .button.full {
