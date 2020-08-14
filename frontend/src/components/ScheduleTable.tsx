@@ -29,7 +29,8 @@ function timeFormat(time: string) {
 export interface TableOptions {
     showRoom: boolean,
     showTeacher: boolean,
-    showFree: boolean
+    showFree: boolean,
+    showColors: boolean
 }
 
 interface ScheduleTableProps {
@@ -71,7 +72,7 @@ export const ScheduleTable: React.FunctionComponent<ScheduleTableProps> = ({inpu
                     }
                     const aClass = period as Class;
                     return (
-                        <td style={{backgroundColor: colorGenerator(aClass.id)}} className={"block class"} key={index}>
+                        <td style={options.showColors ? {backgroundColor: colorGenerator(aClass.id)}: {}} className={"block class"} key={index}>
                             <span className={"class-name"}>{aClass.name}</span>
                             {
                                 options.showRoom && aClass.room &&

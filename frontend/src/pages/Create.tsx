@@ -15,7 +15,7 @@ export const Create: React.FunctionComponent = () => {
     const [addClassModelOpen, setAddClassModelOpen] = useState(false);
     const [importClassesModelOpen, setImportClassesModelOpen] = useState(false);
     const [editClassesModalOpen, setEditClassesModalOpen] = useState(false);
-    const [tableOptions, setTableOptions] = useState<TableOptions>({showTeacher: true, showRoom: true, showFree: true});
+    const [tableOptions, setTableOptions] = useState<TableOptions>({showTeacher: true, showRoom: true, showFree: true, showColors: true});
 
     useEffect(() => {
         const savedInputClassesString = window.localStorage.getItem("bb-schedule-save");
@@ -44,7 +44,7 @@ export const Create: React.FunctionComponent = () => {
                 </div>
             </div>
             <div className={"school-selector"}>
-                        <span onClick={() => setSchoolType(SchoolType.HIGH_SCHOOL)}
+                <span onClick={() => setSchoolType(SchoolType.HIGH_SCHOOL)}
                               className={"school-switch " + (schoolType === SchoolType.HIGH_SCHOOL && "selected")}>High School</span>
                 <span onClick={() => setSchoolType(SchoolType.MIDDLE_SCHOOL)}
                       className={"school-switch " + (schoolType === SchoolType.MIDDLE_SCHOOL && "selected")}>Middle School</span>
@@ -53,6 +53,7 @@ export const Create: React.FunctionComponent = () => {
                 <label><input type={"checkbox"} onChange={e => setTableOptions({...tableOptions, showFree: e.target.checked})} checked={tableOptions.showFree}/>Show Free Periods</label>
                 <label><input type={"checkbox"} onChange={e => setTableOptions({...tableOptions, showRoom: e.target.checked})} checked={tableOptions.showRoom}/>Show Room Number</label>
                 <label><input type={"checkbox"} onChange={e => setTableOptions({...tableOptions, showTeacher: e.target.checked})} checked={tableOptions.showTeacher}/>Show Teacher</label>
+                <label><input type={"checkbox"} onChange={e => setTableOptions({...tableOptions, showColors: e.target.checked})} checked={tableOptions.showColors}/>Show Colors</label>
             </div>
             <ScheduleTable inputClasses={inputClasses} schoolType={schoolType} schedule={schedule} options={tableOptions}/>
 

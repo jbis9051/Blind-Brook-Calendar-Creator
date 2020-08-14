@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "build": "tsc",
+    "run": "node build/bin/www.js",
     "start": "ts-node-dev bin/www.ts"
   },
   "dependencies": {

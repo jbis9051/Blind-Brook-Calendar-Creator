@@ -2,7 +2,7 @@
     background: white;
     padding: 20px;
     border-radius: 7px;
-    min-width: 500px;
+    width: 90vw;
     max-width: 100%;
 }
 
@@ -44,4 +44,13 @@
     width: 50%;
     height: 200px;
     margin-left: 10px;
+}
+
+@media screen and (max-width: 700px) {
+    .import-input-container {
+        flex-direction: column;
+    }
+    .import-tutorial   {
+        width: 100%;
+    }
 }

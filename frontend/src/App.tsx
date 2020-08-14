@@ -20,6 +20,9 @@ function App() {
                     <Route exact path={"/about"}>
                         <About/>
                     </Route>
+                    <Route exact path={"*"}>
+                        <h1 className={"not-found"}>404 Not Found</h1>
+                    </Route>
                 </Switch>
             </Layout>
         </Router>
