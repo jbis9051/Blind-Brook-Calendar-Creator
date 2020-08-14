@@ -8,6 +8,7 @@
 
 .import-input-container {
     display: flex;
+    align-items: center;
 }
 
 .import-title {
@@ -19,8 +20,7 @@
     padding: 10px;
     border-radius: 0.25rem;
     border: 1px solid #c4c4c4;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin: 10px 0;
     width: 100%;
     display: block;
     -webkit-box-sizing: border-box;
@@ -40,7 +40,8 @@
     font-weight: 600;
     display: block;
 }
-
-.import-tutorial {
-    width: 100%;
+.import-tutorial   {
+    width: 50%;
+    height: 200px;
+    margin-left: 10px;
 }
