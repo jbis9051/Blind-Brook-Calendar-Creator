@@ -1,6 +1,6 @@
 {
   "name": "@bb-scheduler/bb-scheduler",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "private": true,
   "description": "A website to generate iCal files and HTML tables based on Blind Brook's rotating block schedule and letter day calendar.",
   "scripts": {
