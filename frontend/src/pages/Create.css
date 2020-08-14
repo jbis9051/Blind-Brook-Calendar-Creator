@@ -43,6 +43,11 @@
     align-items: center;
 }
 
+.table-options {
+    display: flex;
+    justify-content: space-evenly;
+}
+
 @media (max-width: 600px) {
     .create-button-wrapper {
         flex-direction: column;

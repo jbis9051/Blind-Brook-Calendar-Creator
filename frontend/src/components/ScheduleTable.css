@@ -27,6 +27,14 @@
     font-size: 12px;
 }
 
+.block.class > span {
+    display: block;
+}
+
+.class-name {
+    font-weight: 600;
+}
+
 .block.long {
     background: #465ec4;
     color: white;
@@ -54,15 +62,12 @@ th:first-child {
 
 
 @media print {
-    @page {
-        size: 900px;
-    }
 
     body,
     html {
-        width: 900px;
         overflow: hidden;
     }
+
     .table-wrapper {
         position: fixed;
         width: 100%;
@@ -76,13 +81,17 @@ th:first-child {
     }
 
     .block {
-        -webkit-print-color-adjust: exact !important;   /* Chrome, Safari */
-        color-adjust: exact !important;                 /*Firefox*/
+        -webkit-print-color-adjust: exact !important; /* Chrome, Safari */
+        color-adjust: exact !important; /*Firefox*/
     }
 
     .time-label {
         font-weight: 600;
         font-size: 18px;
+    }
+
+    thead {
+        display: table-row-group
     }
 }
 

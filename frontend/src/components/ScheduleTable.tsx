@@ -13,6 +13,7 @@ import {
     RemoteSchedule,
     Time
 } from "@bb-scheduler/common";
+import {colorGenerator} from "../helpers/colorGenerator";
 
 function timeFormat(time: string) {
     let [hour, min] = time.split(":");
@@ -26,9 +27,9 @@ function timeFormat(time: string) {
 }
 
 export interface TableOptions {
-    showRoom?: boolean,
-    showTeacher?: boolean,
-    showFree?: boolean
+    showRoom: boolean,
+    showTeacher: boolean,
+    showFree: boolean
 }
 
 interface ScheduleTableProps {
@@ -70,7 +71,7 @@ export const ScheduleTable: React.FunctionComponent<ScheduleTableProps> = ({inpu
                     }
                     const aClass = period as Class;
                     return (
-                        <td className={"block class"} key={index}>
+                        <td style={{backgroundColor: colorGenerator(aClass.id)}} className={"block class"} key={index}>
                             <span className={"class-name"}>{aClass.name}</span>
                             {
                                 options.showRoom && aClass.room &&

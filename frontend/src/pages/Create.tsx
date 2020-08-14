@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './Create.css';
 import {ConfigurationSchedule, InClassSchedule, InputClass, Schedule, SchoolType} from "@bb-scheduler/common";
-import {ScheduleTable} from "../components/ScheduleTable";
+import {ScheduleTable, TableOptions} from "../components/ScheduleTable";
 import {AddClassModal} from "../components/Modal/AddClassModal";
 import {Button} from "../components/Util/Button";
 import {ImportClassesModal} from "../components/Modal/ImportClassesModal";
@@ -15,6 +15,7 @@ export const Create: React.FunctionComponent = () => {
     const [addClassModelOpen, setAddClassModelOpen] = useState(false);
     const [importClassesModelOpen, setImportClassesModelOpen] = useState(false);
     const [editClassesModalOpen, setEditClassesModalOpen] = useState(false);
+    const [tableOptions, setTableOptions] = useState<TableOptions>({showTeacher: true, showRoom: true, showFree: true});
 
     useEffect(() => {
         const savedInputClassesString = window.localStorage.getItem("bb-schedule-save");
@@ -48,7 +49,13 @@ export const Create: React.FunctionComponent = () => {
                 <span onClick={() => setSchoolType(SchoolType.MIDDLE_SCHOOL)}
                       className={"school-switch " + (schoolType === SchoolType.MIDDLE_SCHOOL && "selected")}>Middle School</span>
             </div>
-            <ScheduleTable inputClasses={inputClasses} schoolType={schoolType} schedule={schedule} options={{showFree: true}}/>
+            <div className={"table-options"}>
+                <label><input type={"checkbox"} onChange={e => setTableOptions({...tableOptions, showFree: e.target.checked})} checked={tableOptions.showFree}/>Show Free Periods</label>
+                <label><input type={"checkbox"} onChange={e => setTableOptions({...tableOptions, showRoom: e.target.checked})} checked={tableOptions.showRoom}/>Show Room Number</label>
+                <label><input type={"checkbox"} onChange={e => setTableOptions({...tableOptions, showTeacher: e.target.checked})} checked={tableOptions.showTeacher}/>Show Teacher</label>
+            </div>
+            <ScheduleTable inputClasses={inputClasses} schoolType={schoolType} schedule={schedule} options={tableOptions}/>
+
             {
                 addClassModelOpen &&
                 <AddClassModal onAddClass={(inputClass) => setInputClasses([...inputClasses, inputClass])} onClose={() => setAddClassModelOpen(false)}/>
