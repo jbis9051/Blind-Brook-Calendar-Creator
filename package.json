@@ -2,7 +2,7 @@
   "name": "@bb-scheduler/bb-scheduler",
   "version": "3.0.0",
   "private": true,
-  "description": "A website and module to generate iCal files and HTML tables based on Blind Brook's rotating block schedule and letter day calendar.",
+  "description": "A website to generate iCal files and HTML tables based on Blind Brook's rotating block schedule and letter day calendar.",
   "scripts": {
     "setup": "lerna bootstrap",
     "start": "lerna run --parallel start"
