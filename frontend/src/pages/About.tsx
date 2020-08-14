@@ -16,7 +16,7 @@ export const About: React.FunctionComponent = () => {
             <p>If you encounter any issue with the website please <a
                 href="https://github.com/jbis9051/Blind-Brook-Calendar-Creator/issues/new">open an issue</a> on
                 GitHub or contact me directly.</p>
-            <p>My website is <a href="https://joshbrown.info">https://joshbrown.info</a>.</p>
+            <p>Josh's website is <a href="https://joshbrown.info">https://joshbrown.info</a>.</p>
         </div>
     );
 }
