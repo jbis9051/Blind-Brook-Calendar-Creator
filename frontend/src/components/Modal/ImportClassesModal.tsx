@@ -32,7 +32,7 @@ export const ImportClassesModal: React.FunctionComponent<ImportClassesModalProps
                 onClose();
                 setImportError(undefined);
                 setIsDone(false)
-            }, 3000)
+            }, 2000)
         } catch (e) {
             setImportError(typeof e === "string" ? e : "Unknown error occured. Please try copying and pasting again.");
         }
@@ -42,7 +42,7 @@ export const ImportClassesModal: React.FunctionComponent<ImportClassesModalProps
         <Modal onClose={onClose}>
             <div className={"import-modal"}>
                 {isDone ? (
-                    <span className={"success-msg"}>Import Successful!</span>
+                    <span className={"success-msg"}>Importing...</span>
                 ) : (
                     <>
                         <h2 className={"import-title"}>Import Classes</h2>
