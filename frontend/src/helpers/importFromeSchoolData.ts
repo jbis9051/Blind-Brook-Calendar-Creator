@@ -11,7 +11,8 @@ export function importFromeSchoolData(importDataString: string){
     } else {
         throw 'Unable to detect delimiter. Please copy and paste again.';
     }
-    const classes = importDataString.split(classDelimiter).map(aClass => aClass.split(cellDelimiter));
+    const classes = importDataString.split(classDelimiter)
+        .map(aClass => aClass.split(cellDelimiter).map(val => val.trim()))
     if (classes.some(attributes => attributes[0] && attributes[0].match(letterDayRegex))) {
         return studentScheduleToObject(classes);
     } else if (classes.some(attributes => attributes[2] && attributes[2].match(letterDayRegex))) {
