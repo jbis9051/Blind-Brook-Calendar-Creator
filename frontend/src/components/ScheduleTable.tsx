@@ -96,11 +96,10 @@ export const ScheduleTable: React.FunctionComponent<ScheduleTableProps> = ({inpu
             <table className={"schedule-table"}>
                 <thead>
                 <tr>
-                    <th className={"time-label"}>In Class</th>
+                    <th className={"time-label"}>Times</th>
                     {Object.keys(scheduleOutput).map(letter =>
                         <th key={letter} className={"letter"}>{letter}</th>
                     )}
-                    <th className={"time-label"}>Remote</th>
                 </tr>
                 </thead>
                 <tbody>

@@ -18,78 +18,78 @@ export const RemoteSchedule: ConfigurationSchedule = {
         times:[
             {
                 block: 1,
-                from: "08:00",
-                to: "08:50"
+                from: "07:50",
+                to: "08:40"
             },
             {
                 block: 2,
-                from: "09:00",
-                to: "09:50"
+                from: "08:50",
+                to: "09:40"
             },
             {
                 block: 3,
-                from: "10:00",
-                to: "10:50"
+                from: "9:50",
+                to: "10:40"
             },
             {
                 block: SpecialPeriod.LUNCH,
-                from: "11:00",
-                to: "11:50"
+                from: "10:50",
+                to: "11:40"
             },
             {
                 block: 4,
-                from: "12:00",
-                to: "12:50"
+                from: "11:50",
+                to: "12:40"
             },
             {
                 block: 5,
-                from: "13:00",
-                to: "13:50"
+                from: "12:50",
+                to: "13:40"
             },
             {
                 block: 6,
-                from: "14:00",
-                to: "14:50"
+                from: "13:50",
+                to: "14:40"
             }
         ]
     },
     [SchoolType.MIDDLE_SCHOOL]: {
         schedule: scheduleStructure,
-        times: [
+        times:[
             {
                 block: 1,
-                from: "08:00",
-                to: "08:50"
+                from: "07:50",
+                to: "08:40"
             },
             {
                 block: 2,
-                from: "09:00",
-                to: "09:50"
+                from: "08:50",
+                to: "09:40"
             },
             {
                 block: 3,
-                from: "10:00",
-                to: "10:50"
+                from: "9:50",
+                to: "10:40"
             },
             {
                 block: 4,
-                from: "11:00",
-                to: "11:50"
+                from: "11:50",
+                to: "12:40"
             },
             {
                 block: SpecialPeriod.LUNCH,
-                from: "12:00",
-                to: "12:50"
+                from: "10:50",
+                to: "11:40"
             },
             {
                 block: 5,
-                from: "13:00",
-                to: "13:50"
+                from: "12:50",
+                to: "13:40"
             },
             {
                 block: 6,
-                from: "14:00",
-                to: "14:50"
+                from: "13:50",
+                to: "14:40"
             }
         ]
     }
