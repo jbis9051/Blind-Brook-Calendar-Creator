@@ -49,9 +49,6 @@ export const ScheduleTable: React.FunctionComponent<ScheduleTableProps> = ({inpu
             periods.filter(period => period.time.from === time.from && period.time.to === time.to)
         ));
     })
-
-    const otherScheduleTimes = (schedule === InClassSchedule ? RemoteSchedule : InClassSchedule)[schoolType].times;
-
     const body: React.ReactNode[] = [];
 
     let index = 0;
@@ -85,7 +82,6 @@ export const ScheduleTable: React.FunctionComponent<ScheduleTableProps> = ({inpu
                         </td>
                     )
                 })}
-                <td className={"time"}>{otherScheduleTimes[index] && timeFormat(otherScheduleTimes[index].from)} - {otherScheduleTimes[index] && timeFormat(otherScheduleTimes[index].to)}</td>
             </tr>
         )
         index++;
@@ -96,11 +92,10 @@ export const ScheduleTable: React.FunctionComponent<ScheduleTableProps> = ({inpu
             <table className={"schedule-table"}>
                 <thead>
                 <tr>
-                    <th className={"time-label"}>In Class</th>
+                    <th className={"time-label"}>Time</th>
                     {Object.keys(scheduleOutput).map(letter =>
                         <th key={letter} className={"letter"}>{letter}</th>
                     )}
-                    <th className={"time-label"}>Remote</th>
                 </tr>
                 </thead>
                 <tbody>
