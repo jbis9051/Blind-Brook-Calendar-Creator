@@ -73,13 +73,13 @@ export const InClassSchedule: ConfigurationSchedule = {
             },
             {
                 block: 4,
-                from: "11:50",
-                to: "12:40"
+                from: "10:50",
+                to: "11:40"
             },
             {
                 block: SpecialPeriod.LUNCH,
-                from: "10:50",
-                to: "11:40"
+                from: "11:50",
+                to: "12:40"
             },
             {
                 block: 5,
